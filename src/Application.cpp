@@ -59,7 +59,7 @@ void Application::initLua()
     else
         cout << "Could not load file" << endl;
 
-    LuaBindings::LuaBindings *luaBindings = new LuaBindings();
+    LuaBindings *luaBindings = new LuaBindings();
 
     int sum = luaBindings->add(L, 1, 2);
 

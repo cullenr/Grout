@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
     printVersion();
 
     RenderWindow window(VideoMode(800, 600), "Grout");
-    Application::Application app;
+    Application app;
 
     app.create();
 

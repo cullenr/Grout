@@ -6,7 +6,7 @@ class LuaState
 	lua_State *L;
 
 public:
-  	LuaState() : L(lua_open())
+  	LuaState() : L(luaL_newstate())
   	{
   	}
 	
