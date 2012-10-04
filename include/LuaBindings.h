@@ -1,5 +1,5 @@
-#include <iostream>
-
+#ifndef LUA_BINDINGS_H
+    #define LUA_BINDINGS_H
 class LuaBindings
 {
 public:
@@ -15,3 +15,5 @@ public:
 	void updateInput(lua_State* L);
 
 };
+
+#endif

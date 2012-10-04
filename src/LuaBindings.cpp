@@ -5,15 +5,13 @@
 void LuaBindings::updateInput(lua_State* L)
 {
 	lua_getglobal(L, "__INPUT");
-	
+
 	if (!lua_istable(L, -1))
 	{
-    	std::cout << "Creating __INPUT table" << std::endl;
-    	lua_newtable(L);
-    	lua_setglobal(L, "__INPUT");
-    }
-  	else
-  		std::cout << "yay! got '__INPUT' table" << std::endl;
+		std::cout << "Creating __INPUT table" << std::endl;
+		lua_newtable(L);
+		lua_setglobal(L, "__INPUT");
+	}
 }
 
 int LuaBindings::add (lua_State* L, int x, int y )

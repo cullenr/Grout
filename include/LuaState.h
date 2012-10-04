@@ -1,5 +1,7 @@
+#ifndef LUA_STATE_H
+    #define LUA_STATE_H
+
 #include "GroutLua.h"
-#include <iostream>
 
 class LuaState
 {
@@ -20,3 +22,5 @@ public:
 		return L;
 	}	
 };
+
+#endif

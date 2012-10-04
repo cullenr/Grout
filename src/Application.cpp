@@ -7,14 +7,10 @@
 using namespace std;
 using namespace sf;
 
-Application::~Application()
+void Application::create(RenderWindow &window)
 {
-	cout << "Application::DESTROY" << endl;
-	delete sprite;
-}
+    window.EnableKeyRepeat(false);
 
-void Application::create()
-{
 	initLua();
 
     if (!image.LoadFromFile("assets/snorlax.png"))
@@ -45,6 +41,8 @@ void Application::pollEvents(sf::RenderWindow &window)
     {
         if(event.Type == Event::Closed)
             window.Close();
+        
+        keys->processEvent(event);
     }
 }
 

@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
     RenderWindow window(VideoMode(800, 600), "Grout");
     Application app;
 
-    app.create();
+    app.create(window);
 
     while (window.IsOpened())
     {

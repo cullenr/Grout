@@ -1,8 +1,15 @@
 cmake_minimum_required(VERSION 2.6)
 project(grout)
 
+option(ADD_TESTS "RunTests" OFF)
+
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
-set(PROJECT_SOURCES ${PROJECT_SOURCE_DIR}/LuaBindings.cpp ${PROJECT_SOURCE_DIR}/main.cpp ${PROJECT_SOURCE_DIR}/Application.cpp)
+set(PROJECT_SOURCES 
+	${PROJECT_SOURCE_DIR}/LuaBindings.cpp 
+	${PROJECT_SOURCE_DIR}/main.cpp 
+	${PROJECT_SOURCE_DIR}/Keys.cpp
+	${PROJECT_SOURCE_DIR}/Application.cpp
+	)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 set(EXECUTABLE_NAME "grout")
 set(GROUT_VERSION_MAJOR 0)
@@ -24,7 +31,6 @@ include_directories("${PROJECT_BINARY_DIR}")
 add_executable(${EXECUTABLE_NAME} ${PROJECT_SOURCES})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-message(${CMAKE_INCLUDE_PATH}aa)
 
 message("Libraries ================================================")
 
@@ -42,10 +48,17 @@ endif()
 
 message("Output ===================================================")
 
+if(ADD_TESTS)
+  message("YES ${CMAKE_CURRENT_SOURCE_DIR}/tests")
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
+else()
+  message("NO ===================================================")
+endif()
+
+
 # Install target
 file(COPY ${CMAKE_SOURCE_DIR}/assets/ DESTINATION ${CMAKE_BINARY_DIR}/assets)
 install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
-
 # CPack packaging
 # include(InstallRequiredSystemLibraries)
 # set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/COPYING")

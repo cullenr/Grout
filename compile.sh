@@ -8,6 +8,6 @@ mkdir $BUILD_DIR
 
 cd $BUILD_DIR
 
-cmake ..
-#cmake -Wdev ..
+cmake -Wdev -DADD_TESTS=ON .. 
+
 make
