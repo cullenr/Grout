@@ -6,8 +6,6 @@ extern "C" {
 #include "lualib.h"
 #include "lauxlib.h"
 }
-
-#include "LuaState.h"
 #include "LuaBindings.h"
 
 #endif

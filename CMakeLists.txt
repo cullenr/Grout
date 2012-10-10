@@ -9,6 +9,8 @@ set(PROJECT_SOURCES
 	${PROJECT_SOURCE_DIR}/main.cpp 
 	${PROJECT_SOURCE_DIR}/Keys.cpp
 	${PROJECT_SOURCE_DIR}/Application.cpp
+  ${PROJECT_SOURCE_DIR}/Scene.cpp
+  ${PROJECT_SOURCE_DIR}/Actor.cpp
 	)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 set(EXECUTABLE_NAME "grout")
@@ -44,6 +46,12 @@ find_package(Lua52 REQUIRED)
 if(LUA52_FOUND)
   include_directories(${LUA_INCLUDE_DIR})
   target_link_libraries(${EXECUTABLE_NAME} ${LUA_LIBRARIES})
+endif()
+
+find_package(LuaBind REQUIRED)
+if(LUABIND_FOUND)
+  include_directories(${LUABIND_INCLUDE_DIR})
+  target_link_libraries(${EXECUTABLE_NAME} ${LUABIND_LIBRARIES})
 endif()
 
 message("Output ===================================================")
