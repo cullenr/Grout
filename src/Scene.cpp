@@ -1,18 +1,33 @@
 #include "Scene.hpp"
 #include "Actor.hpp"
+#include <iostream>
+
+void Scene::printHello()
+{
+    std::cout << "SCENE SAYS HELLO" << std::endl;
+}
 
 void Scene::update()
 {
-	list<Actor>::iterator i;
+    std::cout << "UPDATE SCENE" << std::endl;
 
-	for(i = actors.begin(); 
-		i != actors.end(); 
-		++i) 
-		i->update();
+    std::list<Actor*>::iterator i;
 
+    for(i = mActors.begin();
+        i != mActors.end();
+        ++i)
+    {
+        (*i)->update();
+    }
+
+    onUpdate();
 }
 
-void Scene::addActor(Actor& actor)
+void Scene::addActor(Actor* actor)
 {
-	actor.push_back(actor);
+    mActors.push_back(actor);
+}
+
+void Scene::removeActor(Actor* actor)
+{
 }

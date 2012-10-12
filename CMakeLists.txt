@@ -5,13 +5,16 @@ option(ADD_TESTS "RunTests" OFF)
 
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(PROJECT_SOURCES 
-	${PROJECT_SOURCE_DIR}/LuaBindings.cpp 
-	${PROJECT_SOURCE_DIR}/main.cpp 
-	${PROJECT_SOURCE_DIR}/Keys.cpp
-	${PROJECT_SOURCE_DIR}/Application.cpp
-  ${PROJECT_SOURCE_DIR}/Scene.cpp
-  ${PROJECT_SOURCE_DIR}/Actor.cpp
-	)
+    ${PROJECT_SOURCE_DIR}/updatemanager.cpp
+    ${PROJECT_SOURCE_DIR}/IUpdateable.h
+    ${PROJECT_SOURCE_DIR}/main.cpp
+    ${PROJECT_SOURCE_DIR}/Keys.cpp
+    ${PROJECT_SOURCE_DIR}/Application.cpp
+    ${PROJECT_SOURCE_DIR}/Scene.cpp
+    ${PROJECT_SOURCE_DIR}/Actor.cpp
+    ${PROJECT_SOURCE_DIR}/LuaState.h
+    )
+
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 set(EXECUTABLE_NAME "grout")
 set(GROUT_VERSION_MAJOR 0)
@@ -31,8 +34,6 @@ configure_file(
 include_directories("${PROJECT_BINARY_DIR}")
 
 add_executable(${EXECUTABLE_NAME} ${PROJECT_SOURCES})
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 message("Libraries ================================================")
 

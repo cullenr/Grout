@@ -3,5 +3,12 @@
 
 void Actor::update()
 {
-//	std::cout << "bang" << std::endl;
+    std::cout << "ACTOR :: UPATE" << std::endl;
+
+    onUpdate();
 }
+
+//void Actor::onUpdate()
+//{
+//    std::cout << "ACTOR :: ONUPATE" << std::endl;
+//}

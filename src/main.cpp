@@ -7,24 +7,27 @@ using namespace sf;
 
 void printVersion()
 {
-    std::cout << "Version " << GROUT_VERSION_MAJOR << 
+    std::cout << "Version " << GROUT_VERSION_MAJOR <<
         "." << GROUT_VERSION_MINOR << std::endl;
 }
 
-int main(int argc, char* argv[]) 
+int main(int argc, char* argv[])
 {
     printVersion();
 
     RenderWindow window(VideoMode(800, 600), "Grout");
-    Application app;
 
-    app.create(window);
+    Application* app = new Application();
+
+    app->create(window);
 
     while (window.IsOpened())
     {
-        app.update(window);
-        app.draw(window);
+        app->update(window);
+        app->draw(window);
     }
+
+    delete app;
 
     return EXIT_SUCCESS;
 }
