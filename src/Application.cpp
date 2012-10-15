@@ -14,14 +14,14 @@ void Application::setScene(float arg)
 
 void Application::create(RenderWindow &window)
 {
-    window.EnableKeyRepeat(false);
+    window.setKeyRepeatEnabled(false);
 
     bindToLua<SceneWrapper>(mLuaState);
     bindToLua<ActorWrapper>(mLuaState);
 
-    Scene* scene = new Scene();//TODO : fix leak
+    mScene = new Scene();
 
-    luabind::globals(mLuaState)["scene"] = scene;
+    luabind::globals(mLuaState)["scene"] = mScene;
 
     luaL_dostring(mLuaState,
         "actor = Actor()\n"
@@ -31,7 +31,7 @@ void Application::create(RenderWindow &window)
         "scene:addActor(actor)\n"
         "scene:printHello()\n");
 
-    scene->update();
+    mUpdateManager.addUpdateable(mScene);
 }
 
 void Application::update(RenderWindow &window)
@@ -42,20 +42,20 @@ void Application::update(RenderWindow &window)
 
 void Application::draw(RenderWindow &window)
 {
-	window.Clear();
-    window.Display();
+    window.clear();
+    window.display();
 }
 
 void Application::pollEvents(sf::RenderWindow &window) const
 {
     Event event;
 
-    while(window.GetEvent(event)) 
+    while(window.pollEvent(event))
     {
-        if(event.Type == Event::Closed)
+        if(event.type == Event::Closed)
         {
             cout << "CLOSE EVENT" << endl;
-            window.Close();    
+            window.close();
         }
     }
 }

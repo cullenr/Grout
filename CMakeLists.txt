@@ -5,7 +5,7 @@ option(ADD_TESTS "RunTests" OFF)
 
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(PROJECT_SOURCES 
-    ${PROJECT_SOURCE_DIR}/updatemanager.cpp
+    ${PROJECT_SOURCE_DIR}/UpdateManager.cpp
     ${PROJECT_SOURCE_DIR}/IUpdateable.h
     ${PROJECT_SOURCE_DIR}/main.cpp
     ${PROJECT_SOURCE_DIR}/Keys.cpp
@@ -37,7 +37,7 @@ add_executable(${EXECUTABLE_NAME} ${PROJECT_SOURCES})
 
 message("Libraries ================================================")
 
-find_package(SFML 1.6 REQUIRED system window graphics network audio)
+find_package(SFML 2.0 REQUIRED system window graphics network audio)
 if(SFML_FOUND)
   include_directories(${SFML_INCLUDE_DIR})
   target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES})

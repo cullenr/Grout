@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
 
     app->create(window);
 
-    while (window.IsOpened())
+    while (window.isOpen())
     {
         app->update(window);
         app->draw(window);

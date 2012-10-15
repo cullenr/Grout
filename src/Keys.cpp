@@ -6,16 +6,16 @@ using namespace std;
 
 void Keys::processEvent(sf::Event &event)
 {
-	if(event.Type == sf::Event::KeyReleased ||
-		event.Type == sf::Event::KeyPressed )
+    if(event.type == sf::Event::KeyReleased ||
+        event.type == sf::Event::KeyPressed )
 	{
-		if(event.Type == sf::Event::KeyPressed)
+        if(event.type == sf::Event::KeyPressed)
 		{			
-			cout << "UNIQUE PRESS : " << event.Key.Code << endl;
+            cout << "UNIQUE PRESS : " << event.key.code << endl;
 		}
-		else if(event.Type == sf::Event::KeyReleased)
+        else if(event.type == sf::Event::KeyReleased)
 		{
-			cout << "UNIQUE RELEASE : " << event.Key.Code << endl;
+            cout << "UNIQUE RELEASE : " << event.key.code << endl;
 		}
 	}
 }

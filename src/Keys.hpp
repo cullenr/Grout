@@ -9,7 +9,7 @@ namespace input
 	private:
 	public:
 		Keys(){};
-		~Keys(){};
+        ~Keys(){};
 
         void processEvent(Event &event);
 	};
