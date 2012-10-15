@@ -1,6 +1,8 @@
-#include <SFML/Graphics.hpp>
+#ifndef KEYS_H
+    #define KEYS_H
 
-using namespace sf;
+#include "LuaState.h"
+#include <luabind/luabind.hpp>
 
 namespace input
 {
@@ -11,7 +13,21 @@ namespace input
 		Keys(){};
         ~Keys(){};
 
-        void processEvent(Event &event);
-	};
-}
+        static bool isKeyPressed(int keyCode);
 
+        static void bindToLua(LuaState &luaState)
+        {
+            luabind::module(luaState)
+            [
+                luabind::class_<Keys>("Keys")
+                    .def(luabind::constructor<>())
+                    .scope
+                    [
+                        luabind::def("isKeyDown", &Keys::isKeyPressed)
+                    ]
+            ];
+        }
+	};
+};
+
+#endif KEYS_H

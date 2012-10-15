@@ -1,5 +1,7 @@
 #include "Application.h"
 #include "Actor.hpp"
+#include "Scene.hpp"
+#include "Keys.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <luabind/object.hpp>
@@ -18,6 +20,7 @@ void Application::create(RenderWindow &window)
 
     bindToLua<SceneWrapper>(mLuaState);
     bindToLua<ActorWrapper>(mLuaState);
+    bindToLua<input::Keys>(mLuaState);
 
     mScene = new Scene();
 
@@ -26,7 +29,7 @@ void Application::create(RenderWindow &window)
     luaL_dostring(mLuaState,
         "actor = Actor()\n"
         "function Actor:onUpdate()\n"
-            "print('actor derived update')\n"
+            "print(Keys.isKeyDown(2))\n"
         "end\n"
         "scene:addActor(actor)\n"
         "scene:printHello()\n");
@@ -43,6 +46,9 @@ void Application::update(RenderWindow &window)
 void Application::draw(RenderWindow &window)
 {
     window.clear();
+
+    mScene->render();
+
     window.display();
 }
 

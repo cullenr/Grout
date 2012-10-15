@@ -1,5 +1,6 @@
 #ifndef SCENE_H
     #define SCENE_H
+
 #include "IUpdateable.h"
 #include "LuaState.h"
 #include "Actor.hpp"
@@ -24,6 +25,7 @@ class Scene : public IUpdateable
 		}
 
         void update();
+        void render();
         virtual void onUpdate(){};
         void printHello();
         void addActor(Actor* actor);

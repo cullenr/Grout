@@ -1,21 +1,12 @@
-#include <iostream>
 #include "Keys.hpp"
+#include <SFML/Window.hpp>
+#include <iostream>
 
 using namespace input;
-using namespace std;
 
-void Keys::processEvent(sf::Event &event)
+bool Keys::isKeyPressed(int keyCode)
 {
-    if(event.type == sf::Event::KeyReleased ||
-        event.type == sf::Event::KeyPressed )
-	{
-        if(event.type == sf::Event::KeyPressed)
-		{			
-            cout << "UNIQUE PRESS : " << event.key.code << endl;
-		}
-        else if(event.type == sf::Event::KeyReleased)
-		{
-            cout << "UNIQUE RELEASE : " << event.key.code << endl;
-		}
-	}
+    sf::Keyboard::Key key = (sf::Keyboard::Key)keyCode;
+    return sf::Keyboard::isKeyPressed(key);
 }
+

@@ -15,6 +15,7 @@ class Actor : public IUpdateable
         ~Actor(){ std::cout << "ACTOR::DESTRUCT" << std::endl;};
 
 		void update();
+        void draw();
         virtual void onUpdate() {};
 };
 

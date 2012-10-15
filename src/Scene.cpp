@@ -23,6 +23,11 @@ void Scene::update()
     onUpdate();
 }
 
+void Scene::render()
+{
+    std::cout << "SCENE SAYS HELLO" << std::endl;
+}
+
 void Scene::addActor(Actor* actor)
 {
     mActors.push_back(actor);
@@ -30,4 +35,5 @@ void Scene::addActor(Actor* actor)
 
 void Scene::removeActor(Actor* actor)
 {
+    throw "NOT IMPLEMENTED";
 }

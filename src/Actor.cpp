@@ -8,7 +8,7 @@ void Actor::update()
     onUpdate();
 }
 
-//void Actor::onUpdate()
-//{
-//    std::cout << "ACTOR :: ONUPATE" << std::endl;
-//}
+void Actor::draw()
+{
+
+}
