@@ -1,15 +1,15 @@
 #ifndef APPLICATION_H
     #define APPLICATION_H
+#include "SDL.h"
+#include "SDL_main.h"
 #include "LuaState.h"
 #include "IUpdateable.h"
 #include "Scene.hpp"
-#include "updatemanager.h"
+#include "UpdateManager.h"
+#include "Keys.hpp"
 #include <list>
 #include <iostream>
 
-namespace sf {
-    class RenderWindow;
-}
 
 template<typename T>
 void bindToLua(LuaState &luaState)
@@ -20,28 +20,40 @@ void bindToLua(LuaState &luaState)
 class Application
 {
     private:
+        SDL_Surface *mSurface;
         Scene *mScene;
-        UpdateManager mUpdateManager;
         LuaState mLuaState;
+        UpdateManager mUpdateManager;
         std::list<IUpdateable *> mUpdateables;
+        bool mRunning;
 
-        void pollEvents(sf::RenderWindow &window) const;
+        void pollEvents();
     public:
         Application()
         {
+            mSurface = NULL;
+            mScene = NULL;
+
             std::cout << "APPLICATION::CREATE" << std::endl;
         };
         ~Application()
         {
             delete mScene;
+
+            SDL_FreeSurface(mSurface);
+            SDL_Quit();
+
             std::cout << "APPLICATION::DESTROY" << std::endl;
         };
 
-        void create(sf::RenderWindow &window);
-        void update(sf::RenderWindow &window);
-        void draw(sf::RenderWindow &window0);
+        void create();
+        void update();
+        void draw();
 
-        void setScene(float arg);
+        const bool& getIsRunning() const
+        {
+            return mRunning;
+        }
 };
 
 #endif

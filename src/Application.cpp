@@ -2,21 +2,19 @@
 #include "Actor.hpp"
 #include "Scene.hpp"
 #include "Keys.hpp"
-#include <SFML/Graphics.hpp>
+#include "SDL.h"
 #include <iostream>
 #include <luabind/object.hpp>
 
 using namespace std;
-using namespace sf;
 
-void Application::setScene(float arg)
+void Application::create()
 {
-    cout << "ARG::" << arg << endl;
-}
+    if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
+        throw "Could not init SDL";
 
-void Application::create(RenderWindow &window)
-{
-    window.setKeyRepeatEnabled(false);
+    if((mSurface = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE | SDL_GL_DOUBLEBUFFER | SDL_OPENGL)) == NULL)
+        throw "Could not set video-mode";
 
     bindToLua<SceneWrapper>(mLuaState);
     bindToLua<ActorWrapper>(mLuaState);
@@ -29,39 +27,50 @@ void Application::create(RenderWindow &window)
     luaL_dostring(mLuaState,
         "actor = Actor()\n"
         "function Actor:onUpdate()\n"
-            "print(Keys.isKeyDown(2))\n"
+            "print(Keys.isKeyDown(97))\n"
         "end\n"
         "scene:addActor(actor)\n"
         "scene:printHello()\n");
 
     mUpdateManager.addUpdateable(mScene);
+
+    mRunning = true;
 }
 
-void Application::update(RenderWindow &window)
+void Application::update()
 {
-    pollEvents(window);
+    pollEvents();
     mUpdateManager.update();
 }
 
-void Application::draw(RenderWindow &window)
+void Application::draw()
 {
-    window.clear();
-
     mScene->render();
-
-    window.display();
 }
 
-void Application::pollEvents(sf::RenderWindow &window) const
+void Application::pollEvents()
 {
-    Event event;
+    bool updateKeys = false;
+    SDL_Event event;
 
-    while(window.pollEvent(event))
+    while(SDL_PollEvent(&event))
     {
-        if(event.type == Event::Closed)
+        switch(event.type)
         {
-            cout << "CLOSE EVENT" << endl;
-            window.close();
+        case SDL_QUIT :
+            mRunning = false;
+            break;
+        case SDL_KEYDOWN :
+        case SDL_KEYUP :
+            updateKeys = true;
+            break;
         }
+    }
+
+    if(updateKeys)
+    {
+        uint8_t *keyboardState = SDL_GetKeyState(NULL);
+
+        input::Keys::update(keyboardState);
     }
 }

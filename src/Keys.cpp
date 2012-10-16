@@ -1,12 +1,24 @@
+#include "SDL/SDL_keysym.h"
 #include "Keys.hpp"
-#include <SFML/Window.hpp>
 #include <iostream>
 
 using namespace input;
 
-bool Keys::isKeyPressed(int keyCode)
+uint8_t *Keys::keysDown = NULL;
+
+void Keys::update(uint8_t* newState)
 {
-    sf::Keyboard::Key key = (sf::Keyboard::Key)keyCode;
-    return sf::Keyboard::isKeyPressed(key);
+    keysDown = newState;
 }
 
+bool Keys::isKeyPressed(int keyCode)
+{
+    if(keyCode > 0 && keyCode < SDLK_LAST && keysDown != NULL)
+    {
+        return keysDown[keyCode];
+    }
+    else
+    {
+        return false;
+    }
+}

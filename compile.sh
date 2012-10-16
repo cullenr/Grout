@@ -8,6 +8,6 @@ mkdir $BUILD_DIR
 
 cd $BUILD_DIR
 
-cmake -Wdev -DADD_TESTS=ON .. 
+cmake -Wdev -DSDL_BUILDING_LIBRARY=FALSE .. 
 
 make

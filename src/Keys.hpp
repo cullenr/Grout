@@ -6,12 +6,16 @@
 
 namespace input
 {
-	class Keys
+    class Keys
 	{
-	private:
-	public:
+    protected :
+
+    public :
+        static uint8_t *keysDown;
 		Keys(){};
         ~Keys(){};
+
+        static void update(uint8_t* newState);
 
         static bool isKeyPressed(int keyCode);
 

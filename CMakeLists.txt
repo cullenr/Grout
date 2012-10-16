@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 2.6)
 project(grout)
 
 option(ADD_TESTS "RunTests" OFF)
+set(EXECUTABLE_NAME "grout")
+set(GROUT_VERSION_MAJOR 0)
+set(GROUT_VERSION_MINOR 1)
 
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(PROJECT_SOURCES 
@@ -16,9 +19,6 @@ set(PROJECT_SOURCES
     )
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
-set(EXECUTABLE_NAME "grout")
-set(GROUT_VERSION_MAJOR 0)
-set(GROUT_VERSION_MINOR 1)
 
 # Enable debug symbols by default
 # command line: -D CMAKE_BUILD_TYPE=Release)
@@ -33,41 +33,50 @@ configure_file(
   )
 include_directories("${PROJECT_BINARY_DIR}")
 
-add_executable(${EXECUTABLE_NAME} ${PROJECT_SOURCES})
-
 message("Libraries ================================================")
 
-find_package(SFML 2.0 REQUIRED system window graphics network audio)
-if(SFML_FOUND)
-  include_directories(${SFML_INCLUDE_DIR})
-  target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES})
+add_executable(${EXECUTABLE_NAME} ${PROJECT_SOURCES})
+
+find_package(SDL REQUIRED)
+if(SDL_FOUND)
+    include_directories(${SDL_INCLUDE_DIR})
+    target_link_libraries(${EXECUTABLE_NAME} ${SDL_LIBRARY})
+endif()
+
+find_package(SDL_image REQUIRED)
+if(SDLIMAGE_FOUND)
+    include_directories(${SDLIMAGE_INCLUDE_DIR})
+    set(LIBS ${LIBS} ${SDLIMAGE_LIBRARY})
+endif()
+
+find_package(OpenGL REQUIRED)
+if(OPENGL_FOUND)
+    include_directories(${OPENGL_INCLUDE_DIR})
+    set(LIBS ${LIBS} ${OPENGL_LIBRARIES})
 endif()
 
 find_package(Lua52 REQUIRED)
 if(LUA52_FOUND)
-  include_directories(${LUA_INCLUDE_DIR})
-  target_link_libraries(${EXECUTABLE_NAME} ${LUA_LIBRARIES})
+    include_directories(${LUA_INCLUDE_DIR})
+    target_link_libraries(${EXECUTABLE_NAME} ${LUA_LIBRARIES})
 endif()
 
 find_package(LuaBind REQUIRED)
 if(LUABIND_FOUND)
-  include_directories(${LUABIND_INCLUDE_DIR})
-  target_link_libraries(${EXECUTABLE_NAME} ${LUABIND_LIBRARIES})
+    include_directories(${LUABIND_INCLUDE_DIR})
+    target_link_libraries(${EXECUTABLE_NAME} ${LUABIND_LIBRARIES})
 endif()
 
 message("Output ===================================================")
 
 if(ADD_TESTS)
-  message("YES ${CMAKE_CURRENT_SOURCE_DIR}/tests")
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
-else()
-  message("NO ===================================================")
 endif()
-
 
 # Install target
 file(COPY ${CMAKE_SOURCE_DIR}/assets/ DESTINATION ${CMAKE_BINARY_DIR}/assets)
 install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
+
 # CPack packaging
 # include(InstallRequiredSystemLibraries)
 # set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/COPYING")

@@ -1,9 +1,8 @@
+//#include "Application.h"
 #include "Application.h"
 #include "config.h"
 #include <iostream>
-#include <SFML/Graphics.hpp>
-
-using namespace sf;
+#include "SDL.h"
 
 void printVersion()
 {
@@ -11,20 +10,18 @@ void printVersion()
         "." << GROUT_VERSION_MINOR << std::endl;
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char* args[])
 {
     printVersion();
 
-    RenderWindow window(VideoMode(800, 600), "Grout");
-
     Application* app = new Application();
 
-    app->create(window);
+    app->create();
 
-    while (window.isOpen())
+    while (app->getIsRunning())
     {
-        app->update(window);
-        app->draw(window);
+        app->update();
+        app->draw();
     }
 
     delete app;

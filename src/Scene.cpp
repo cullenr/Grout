@@ -9,8 +9,6 @@ void Scene::printHello()
 
 void Scene::update()
 {
-    std::cout << "UPDATE SCENE" << std::endl;
-
     std::list<Actor*>::iterator i;
 
     for(i = mActors.begin();
@@ -25,7 +23,7 @@ void Scene::update()
 
 void Scene::render()
 {
-    std::cout << "SCENE SAYS HELLO" << std::endl;
+    std::cout << "SCENE::RENDER" << std::endl;
 }
 
 void Scene::addActor(Actor* actor)

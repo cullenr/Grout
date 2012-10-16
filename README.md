@@ -4,7 +4,7 @@ GROUT
 Description
 -----------
 
-SFML based tile game engine with Lua scripting.
+SDL based tile game engine with Lua scripting.
 
 Build
 -----
@@ -21,4 +21,4 @@ or
 
 Windows users should use the cmake gui or a mingw terminal.
 
-Make sure you have OpenGL, SFML and Lua51 installed and that your cmake is up to date.
+Make sure you have OpenGL, SDL, SDL_image and Lua51 installed and that your cmake is up to date.

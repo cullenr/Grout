@@ -3,8 +3,6 @@
 
 void Actor::update()
 {
-    std::cout << "ACTOR :: UPATE" << std::endl;
-
     onUpdate();
 }
 
