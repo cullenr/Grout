@@ -3,13 +3,11 @@
 #include "SDL.h"
 #include "SDL_main.h"
 #include "LuaState.h"
-#include "IUpdateable.h"
-#include "Scene.hpp"
-#include "UpdateManager.h"
-#include "Keys.hpp"
+#include "Context.h"
+#include "UpdateController.h"
+#include "Keys.h"
 #include <list>
 #include <iostream>
-
 
 template<typename T>
 void bindToLua(LuaState &luaState)
@@ -21,10 +19,9 @@ class Application
 {
     private:
         SDL_Surface *mSurface;
-        Scene *mScene;
         LuaState mLuaState;
-        UpdateManager mUpdateManager;
-        std::list<IUpdateable *> mUpdateables;
+        UpdateController mUpdateController;
+        Context mContext;
         bool mRunning;
 
         void pollEvents();
@@ -32,14 +29,11 @@ class Application
         Application()
         {
             mSurface = NULL;
-            mScene = NULL;
 
             std::cout << "APPLICATION::CREATE" << std::endl;
         };
         ~Application()
         {
-            delete mScene;
-
             SDL_FreeSurface(mSurface);
             SDL_Quit();
 

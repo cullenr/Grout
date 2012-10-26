@@ -1,5 +1,5 @@
-#include "Scene.hpp"
-#include "Actor.hpp"
+#include "Scene.h"
+#include "Actor.h"
 #include <iostream>
 
 void Scene::printHello()
@@ -9,21 +9,12 @@ void Scene::printHello()
 
 void Scene::update()
 {
-    std::list<Actor*>::iterator i;
-
-    for(i = mActors.begin();
-        i != mActors.end();
-        ++i)
-    {
-        (*i)->update();
-    }
-
     onUpdate();
 }
 
 void Scene::render()
 {
-    std::cout << "SCENE::RENDER" << std::endl;
+    //std::cout << "SCENE::RENDER" << std::endl;
 }
 
 void Scene::addActor(Actor* actor)

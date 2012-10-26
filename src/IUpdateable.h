@@ -1,11 +1,12 @@
 #ifndef IUPDATEABLE_H
 #define IUPDATEABLE_H
 
-class IUpdateable
+#include "IComponent.h"
+
+class IUpdateable : public IComponent
 {
 public :
-    virtual ~IUpdateable() {};
-    virtual void update() = 0;//This notation "= 0" is the pure specifier which means that this is just a prototype.
+    virtual void update();//cannot be pure virtual as there are collections of these
 };
 
 #endif // IUPDATEABLE_H

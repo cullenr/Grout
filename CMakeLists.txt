@@ -7,15 +7,21 @@ set(GROUT_VERSION_MAJOR 0)
 set(GROUT_VERSION_MINOR 1)
 
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
-set(PROJECT_SOURCES 
-    ${PROJECT_SOURCE_DIR}/UpdateManager.cpp
+set(PROJECT_SOURCES
     ${PROJECT_SOURCE_DIR}/IUpdateable.h
+    ${PROJECT_SOURCE_DIR}/IComponent.h
+    ${PROJECT_SOURCE_DIR}/IRenderable.h
+    ${PROJECT_SOURCE_DIR}/IUpdateable.h
+    ${PROJECT_SOURCE_DIR}/IFixedUpdateable.h
+    ${PROJECT_SOURCE_DIR}/Context.h
+    ${PROJECT_SOURCE_DIR}/LuaState.h
     ${PROJECT_SOURCE_DIR}/main.cpp
-    ${PROJECT_SOURCE_DIR}/Keys.cpp
     ${PROJECT_SOURCE_DIR}/Application.cpp
     ${PROJECT_SOURCE_DIR}/Scene.cpp
     ${PROJECT_SOURCE_DIR}/Actor.cpp
-    ${PROJECT_SOURCE_DIR}/LuaState.h
+    ${PROJECT_SOURCE_DIR}/ComponentModel.cpp
+    ${PROJECT_SOURCE_DIR}/UpdateController.cpp
+    ${PROJECT_SOURCE_DIR}/Keys.cpp
     )
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})

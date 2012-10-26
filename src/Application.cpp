@@ -1,7 +1,7 @@
 #include "Application.h"
-#include "Actor.hpp"
-#include "Scene.hpp"
-#include "Keys.hpp"
+#include "Actor.h"
+#include "Scene.h"
+#include "Keys.h"
 #include "SDL.h"
 #include <iostream>
 #include <luabind/object.hpp>
@@ -16,23 +16,22 @@ void Application::create()
     if((mSurface = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE | SDL_GL_DOUBLEBUFFER | SDL_OPENGL)) == NULL)
         throw "Could not set video-mode";
 
-    bindToLua<SceneWrapper>(mLuaState);
+    //bindToLua<SceneWrapper>(mLuaState);
     bindToLua<ActorWrapper>(mLuaState);
     bindToLua<input::Keys>(mLuaState);
 
-    mScene = new Scene();
-
-    luabind::globals(mLuaState)["scene"] = mScene;
+    luabind::globals(mLuaState)["ctx"] = mContext;
 
     luaL_dostring(mLuaState,
         "actor = Actor()\n"
-        "function Actor:onUpdate()\n"
+                  "function Actor:onUpdate()\n"
             "print(Keys.isKeyDown(97))\n"
         "end\n"
         "scene:addActor(actor)\n"
-        "scene:printHello()\n");
+        "scene:printHello()\n"
+        );
 
-    mUpdateManager.addUpdateable(mScene);
+    mUpdateController.addUpdateable(mContext.getScene());
 
     mRunning = true;
 }
@@ -40,12 +39,12 @@ void Application::create()
 void Application::update()
 {
     pollEvents();
-    mUpdateManager.update();
+    mUpdateController.update();
 }
 
 void Application::draw()
 {
-    mScene->render();
+
 }
 
 void Application::pollEvents()

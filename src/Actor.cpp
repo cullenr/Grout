@@ -1,12 +1,6 @@
-#include "Actor.hpp"
-#include <iostream>
+#include "Actor.h"
 
-void Actor::update()
+void Actor::addComponent(IComponent *component)
 {
-    onUpdate();
-}
-
-void Actor::draw()
-{
-
+    mComponents.push_back(component);
 }

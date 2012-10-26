@@ -1,7 +1,7 @@
-#include "updatemanager.h"
+#include "UpdateController.h"
 #include "IUpdateable.h"
 
-void UpdateManager::update()
+void UpdateController::update()
 {
     std::list<IUpdateable*>::iterator i;
 
@@ -13,7 +13,7 @@ void UpdateManager::update()
     }
 }
 
-void UpdateManager::addUpdateable(IUpdateable *updateable)
+void UpdateController::addUpdateable(IUpdateable *updateable)
 {
     mUpdateables.push_back(updateable);
 }

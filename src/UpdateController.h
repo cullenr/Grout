@@ -1,21 +1,21 @@
-#ifndef UPDATEMANAGER_H
-#define UPDATEMANAGER_H
+#ifndef UPDATE_CONTROLLER_H
+#define UPDATE_CONTROLLER_H
 
 #include <list>
 
 class IUpdateable;
 
-class UpdateManager
+class UpdateController
 {
 private:
     std::list<IUpdateable*> mUpdateables;
 
 public:
-    UpdateManager(){};
-    ~UpdateManager(){};
+    UpdateController(){};
+    ~UpdateController(){};
 
     void addUpdateable(IUpdateable *updateable);
     void update();
 };
 
-#endif // UPDATEMANAGER_H
+#endif // UPDATE_CONTROLLER_H
