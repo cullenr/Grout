@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 2.6)
 project(grout)
 
+#NO IDEA WHY BUT MY MINGW DOES NOT SEEM TO WORK WITHOUT THIS LINE.
+if( WIN32 )
+    set(CMAKE_PREFIX_PATH "c:/MinGW/")
+endif()
+
 option(ADD_TESTS "RunTests" OFF)
 set(EXECUTABLE_NAME "grout")
 set(GROUT_VERSION_MAJOR 0)
@@ -43,22 +48,21 @@ message("Libraries ================================================")
 
 add_executable(${EXECUTABLE_NAME} ${PROJECT_SOURCES})
 
-find_package(SDL REQUIRED)
-if(SDL_FOUND)
-    include_directories(${SDL_INCLUDE_DIR})
-    target_link_libraries(${EXECUTABLE_NAME} ${SDL_LIBRARY})
-endif()
-
-find_package(SDL_image REQUIRED)
-if(SDLIMAGE_FOUND)
-    include_directories(${SDLIMAGE_INCLUDE_DIR})
-    set(LIBS ${LIBS} ${SDLIMAGE_LIBRARY})
-endif()
-
 find_package(OpenGL REQUIRED)
 if(OPENGL_FOUND)
     include_directories(${OPENGL_INCLUDE_DIR})
     set(LIBS ${LIBS} ${OPENGL_LIBRARIES})
+endif()
+
+find_package(LuaBind REQUIRED)
+if(LUABIND_FOUND)
+    message(${LUABIND_LIBRARIES})
+    add_library(LUA_BIND STATIC IMPORTED)
+    # point the imported target at the real file
+    set_property(TARGET LUA_BIND PROPERTY
+                IMPORTED_LOCATION ${LUABIND_LIBRARIES})
+    include_directories(${LUABIND_INCLUDE_DIR})
+    target_link_libraries(${EXECUTABLE_NAME} LUA_BIND)
 endif()
 
 find_package(Lua52 REQUIRED)
@@ -67,11 +71,18 @@ if(LUA52_FOUND)
     target_link_libraries(${EXECUTABLE_NAME} ${LUA_LIBRARIES})
 endif()
 
-find_package(LuaBind REQUIRED)
-if(LUABIND_FOUND)
-    include_directories(${LUABIND_INCLUDE_DIR})
-    target_link_libraries(${EXECUTABLE_NAME} ${LUABIND_LIBRARIES})
+find_package(SDL REQUIRED)
+if(SDL_FOUND)
+    include_directories(${SDL_INCLUDE_DIR})
+    target_link_libraries(${EXECUTABLE_NAME} ${SDL_LIBRARY})
 endif()
+
+if(CMAKE_COMPILER_IS_GNUCXX)
+    #set(CMAKE_CXX_FLAGS "-static-libstdc++ -static-libgcc")
+    #set(LINK_FLAGS ${LINK_FLAGS} "-static-libgcc")
+endif()
+
+set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
 
 message("Output ===================================================")
 
@@ -82,6 +93,11 @@ endif()
 # Install target
 file(COPY ${CMAKE_SOURCE_DIR}/assets/ DESTINATION ${CMAKE_BINARY_DIR}/assets)
 install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
+
+if( WIN32 )
+    file(COPY ${CMAKE_SOURCE_DIR}/win/ DESTINATION ${CMAKE_BINARY_DIR})
+endif()
+
 
 # CPack packaging
 # include(InstallRequiredSystemLibraries)
