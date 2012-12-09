@@ -9,7 +9,7 @@ void UpdateController::update()
         i != mUpdateables.end();
         ++i)
     {
-        (*i)->update();
+        //(*i)->update();
     }
 }
 

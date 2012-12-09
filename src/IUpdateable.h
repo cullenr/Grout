@@ -1,12 +1,12 @@
 #ifndef IUPDATEABLE_H
-#define IUPDATEABLE_H
+    #define IUPDATEABLE_H
 
 #include "IComponent.h"
 
-class IUpdateable : public IComponent
+class IUpdateable// : public IComponent
 {
 public :
-    virtual void update();//cannot be pure virtual as there are collections of these
+    void update();//cannot be pure virtual as there are collections of these
 };
 
-#endif // IUPDATEABLE_H
+#endif
