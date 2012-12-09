@@ -1,3 +1,5 @@
+#!/bin/bash
+
 BUILD_DIR="build"
 
 if [ -d "$BUILD_DIR" ]; then
@@ -8,6 +10,6 @@ mkdir $BUILD_DIR
 
 cd $BUILD_DIR
 
-cmake -Wdev -DSDL_BUILDING_LIBRARY=FALSE .. 
+cmake -Wdev -DSDL_BUILDING_LIBRARY=FALSE -G"MSYS Makefiles" .. 
 
-make
+make VERBOSE=1
