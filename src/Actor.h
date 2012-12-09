@@ -33,6 +33,11 @@ class Actor
         void addComponent(IComponent *component);
 };
 
+inline std::ostream& operator<<(std::ostream &strm, const Actor &a)
+{
+  return strm << "Acror" << std::endl;
+}
+
 struct ActorWrapper : Actor, luabind::wrap_base
 {
     ActorWrapper(Context *context) : Actor(context)

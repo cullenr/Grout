@@ -4,7 +4,7 @@
 #include "SDL_main.h"
 #include "LuaState.h"
 #include "Context.h"
-#include "UpdateController.h"
+//#include "UpdateController.h"
 #include "Keys.h"
 #include <list>
 #include <iostream>
@@ -20,7 +20,7 @@ class Application
     private:
         SDL_Surface *mSurface;
         LuaState mLuaState;
-        UpdateController mUpdateController;
+        //UpdateController mUpdateController;
         Context mContext;
         bool mRunning;
 

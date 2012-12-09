@@ -34,4 +34,4 @@ namespace input
 	};
 };
 
-#endif KEYS_H
+#endif
