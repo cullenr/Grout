@@ -1,10 +1,9 @@
 #ifndef CONTEXT_H
     #define CONTEXT_H
 
-#include "Scene.h"
-#include "Scene.h"
-#include "LuaState.h"
-#include "ComponentModel.h"
+#include "Scene.hpp"
+#include "LuaState.hpp"
+#include "ComponentModel.hpp"
 #include "luabind/operator.hpp"
 
 class Context
@@ -41,22 +40,22 @@ inline std::ostream& operator<<(std::ostream &strm, const Context &a)
   return strm << "Context" << std::endl;
 }
 
-struct ContextWrapper : Context, luabind::wrap_base
-{
-    ContextWrapper() : Context()
-    {
-    }
+//struct ContextWrapper : Context, luabind::wrap_base
+//{
+//    ContextWrapper() : Context()
+//    {
+//    }
 
-    static void bindToLua(LuaState &luaState)
-    {
-        luabind::module(luaState)
-        [
-            luabind::class_<Context, ContextWrapper>("Context")
-                .def(luabind::constructor<>())
-                .def(luabind::tostring(luabind::self))
+//    static void bindToLua(LuaState &luaState)
+//    {
+//        luabind::module(luaState)
+//        [
+//            luabind::class_<Context, ContextWrapper>("Context")
+//                .def(luabind::constructor<>())
+//                .def(luabind::tostring(luabind::self))
 
-        ];
-    }
-};
+//        ];
+//    }
+//};
 
-#endif // CONTEXT_H
+#endif

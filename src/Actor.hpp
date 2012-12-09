@@ -1,12 +1,13 @@
 #ifndef ACTOR_H
     #define ACTOR_H
-#include "Context.h"
-#include "IUpdateable.h"
-#include "LuaState.h"
+//#include "Context.hpp"
+#include "IUpdateable.hpp"
+#include "LuaState.hpp"
 #include <luabind/luabind.hpp>
 #include <iostream>
 #include <list>
 
+class Context;
 
 class Actor
 {
@@ -38,21 +39,21 @@ inline std::ostream& operator<<(std::ostream &strm, const Actor &a)
   return strm << "Acror" << std::endl;
 }
 
-struct ActorWrapper : Actor, luabind::wrap_base
-{
-    ActorWrapper(Context *context) : Actor(context)
-    {
-    }
+//struct ActorWrapper : Actor, luabind::wrap_base
+//{
+//    ActorWrapper(Context *context) : Actor(context)
+//    {
+//    }
 
-    static void bindToLua(LuaState &luaState)
-    {
-        luabind::module(luaState)
-        [
-            luabind::class_<Actor, ActorWrapper>("Actor")
-            .def(luabind::constructor<Context *>())
-            .def("addComponent", (void(Actor::*)(IComponent*))&Actor::addComponent)
-        ];
-    }
-};
+//    static void bindToLua(LuaState &luaState)
+//    {
+//        luabind::module(luaState)
+//        [
+//            luabind::class_<Actor, ActorWrapper>("Actor")
+//            .def(luabind::constructor<Context *>())
+//            .def("addComponent", (void(Actor::*)(IComponent*))&Actor::addComponent)
+//        ];
+//    }
+//};
 
 #endif

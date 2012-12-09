@@ -1,7 +1,7 @@
-#include "Application.h"
-#include "Actor.h"
-#include "Scene.h"
-#include "Keys.h"
+#include "Application.hpp"
+#include "Actor.hpp"
+#include "Scene.hpp"
+#include "Keys.hpp"
 #include "SDL.h"
 #include <iostream>
 #include <luabind/object.hpp>
@@ -16,27 +16,27 @@ void Application::create()
     if((mSurface = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE | SDL_GL_DOUBLEBUFFER | SDL_OPENGL)) == NULL)
         throw "Could not set video-mode";
 
-//    bindToLua<SceneWrapper>(mLuaState);
-    bindToLua<ActorWrapper>(mLuaState);
-    bindToLua<input::Keys>(mLuaState);
-    bindToLua<ContextWrapper>(mLuaState);
+////    bindToLua<SceneWrapper>(mLuaState);
+//    bindToLua<ActorWrapper>(mLuaState);
+//    bindToLua<input::Keys>(mLuaState);
+//    bindToLua<ContextWrapper>(mLuaState);
 
-    luaL_dostring(mLuaState, "print('touch me tender')");
+//    luaL_dostring(mLuaState, "print('touch me tender')");
 
-//    luabind::globals(mLuaState)["ctx"] = mContext;
-//    luabind::globals(mLuaState)["ctx"] = "This is the context string";
+////    luabind::globals(mLuaState)["ctx"] = mContext;
+////    luabind::globals(mLuaState)["ctx"] = "This is the context string";
 
-    string script = "print('HELLO?')\n"
-            "ctx = Context()\n"
-            "print(ctx)\n";
+//    string script = "print('HELLO?')\n"
+//            "ctx = Context()\n"
+//            "print(ctx)\n";
 
-    if(luaL_dostring(mLuaState, script.c_str()))
-    {
-        cerr << "LUA EXCEPTION!" << endl;
-        cerr << lua_tostring(mLuaState, -1) << endl;
+//    if(luaL_dostring(mLuaState, script.c_str()))
+//    {
+//        cerr << "LUA EXCEPTION!" << endl;
+//        cerr << lua_tostring(mLuaState, -1) << endl;
 
-        //lua_pop()
-    }
+//        //lua_pop()
+//    }
 
     //mUpdateController.addUpdateable(mContext.getScene());
 

@@ -1,6 +1,6 @@
-//#include "Application.h"
-#include "Application.h"
-#include "config.h"
+//#include "Application.hpp"
+#include "Application.hpp"
+#include "config.hpp"
 #include <iostream>
 #include "SDL.h"
 

@@ -1,7 +1,7 @@
 #ifndef ICOMPONENT_H
 #define ICOMPONENT_H
 
-#include "LuaState.h"
+#include "LuaState.hpp"
 #include <string>
 
 class IComponent{

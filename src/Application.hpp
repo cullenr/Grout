@@ -2,10 +2,10 @@
     #define APPLICATION_H
 #include "SDL.h"
 #include "SDL_main.h"
-#include "LuaState.h"
-#include "Context.h"
-//#include "UpdateController.h"
-#include "Keys.h"
+#include "LuaState.hpp"
+#include "Context.hpp"
+//#include "UpdateController.hpp"
+#include "Keys.hpp"
 #include <list>
 #include <iostream>
 

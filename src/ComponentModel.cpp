@@ -1,9 +1,9 @@
-#include "ComponentModel.h"
+#include "ComponentModel.hpp"
 
-#include "IComponent.h"
-#include "IUpdateable.h"
-#include "IFixedUpdateable.h"
-#include "IRenderable.h"
+#include "IComponent.hpp"
+#include "IUpdateable.hpp"
+#include "IFixedUpdateable.hpp"
+#include "IRenderable.hpp"
 
 void ComponentModel::registerComponent(IComponent* component)
 {

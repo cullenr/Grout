@@ -1,11 +1,5 @@
-#include "Scene.h"
-#include "Actor.h"
+#include "Scene.hpp"
 #include <iostream>
-
-void Scene::printHello()
-{
-    std::cout << "SCENE SAYS HELLO" << std::endl;
-}
 
 void Scene::update()
 {

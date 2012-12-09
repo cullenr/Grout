@@ -1,5 +1,5 @@
-#include "UpdateController.h"
-#include "IUpdateable.h"
+#include "UpdateController.hpp"
+#include "IUpdateable.hpp"
 
 void UpdateController::update()
 {

@@ -1,5 +1,5 @@
 #include "SDL/SDL_keysym.h"
-#include "Keys.h"
+#include "Keys.hpp"
 #include <iostream>
 
 using namespace input;

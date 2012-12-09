@@ -1,7 +1,7 @@
 #ifndef IUPDATEABLE_H
     #define IUPDATEABLE_H
 
-#include "IComponent.h"
+#include "IComponent.hpp"
 
 class IUpdateable// : public IComponent
 {

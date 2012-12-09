@@ -1,7 +1,7 @@
 #ifndef COMPONENT_MODEL_H
 #define COMPONENT_MODEL_H
 
-#include "LuaState.h"
+#include "LuaState.hpp"
 #include <list>
 
 class IUpdateable;

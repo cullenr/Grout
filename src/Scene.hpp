@@ -1,14 +1,12 @@
 #ifndef SCENE_H
     #define SCENE_H
 
-#include "IUpdateable.h"
-#include "LuaState.h"
-//#include "Actor.h"
+#include "IUpdateable.hpp"
+#include "LuaState.hpp"
+#include "Actor.hpp"
 #include <luabind/luabind.hpp>
 #include <iostream>
 #include <list>
-
-class Actor;
 
 class Scene : public IUpdateable
 {
@@ -28,7 +26,6 @@ class Scene : public IUpdateable
         void update();
         void render();
         virtual void onUpdate(){};
-        void printHello();
         void addActor(Actor *actor);
         void removeActor(Actor *actor);
 };
@@ -54,7 +51,6 @@ class Scene : public IUpdateable
 //            luabind::class_<Scene, SceneWrapper>("Scene")
 //                .def(luabind::constructor<>())
 //                .def("addActor", (void(Scene::*)(Actor*))&Scene::addActor)
-//                .def("printHello", &Scene::printHello)
 //                .def("onUpdate", &Scene::onUpdate, &SceneWrapper::defaultOnUpdate)
 //        ];
 //    }

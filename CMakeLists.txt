@@ -13,14 +13,14 @@ set(GROUT_VERSION_MINOR 1)
 
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(PROJECT_SOURCES
-    ${PROJECT_SOURCE_DIR}/IUpdateable.h
-    ${PROJECT_SOURCE_DIR}/IComponent.h
-    ${PROJECT_SOURCE_DIR}/IRenderable.h
-    ${PROJECT_SOURCE_DIR}/IUpdateable.h
-    ${PROJECT_SOURCE_DIR}/IFixedUpdateable.h
-    ${PROJECT_SOURCE_DIR}/Context.h
+    ${PROJECT_SOURCE_DIR}/IUpdateable.hpp
+    ${PROJECT_SOURCE_DIR}/IComponent.hpp
+    ${PROJECT_SOURCE_DIR}/IRenderable.hpp
+    ${PROJECT_SOURCE_DIR}/IUpdateable.hpp
+    ${PROJECT_SOURCE_DIR}/IFixedUpdateable.hpp
+    ${PROJECT_SOURCE_DIR}/Context.hpp
     ${PROJECT_SOURCE_DIR}/Context.cpp
-    ${PROJECT_SOURCE_DIR}/LuaState.h
+    ${PROJECT_SOURCE_DIR}/LuaState.hpp
     ${PROJECT_SOURCE_DIR}/main.cpp
     ${PROJECT_SOURCE_DIR}/Application.cpp
     ${PROJECT_SOURCE_DIR}/Scene.cpp
@@ -41,7 +41,7 @@ endif()
 # Set version information in a config.h file
 configure_file(
   "${PROJECT_SOURCE_DIR}/config.h.in"
-  "${PROJECT_BINARY_DIR}/config.h"
+  "${PROJECT_BINARY_DIR}/config.hpp"
   )
 include_directories("${PROJECT_BINARY_DIR}")
 

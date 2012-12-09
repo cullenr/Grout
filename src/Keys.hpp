@@ -1,7 +1,7 @@
 #ifndef KEYS_H
     #define KEYS_H
 
-#include "LuaState.h"
+#include "LuaState.hpp"
 #include <luabind/luabind.hpp>
 
 namespace input
