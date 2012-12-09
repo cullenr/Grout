@@ -2,6 +2,7 @@
 #include "Actor.hpp"
 #include "Scene.hpp"
 #include "Keys.hpp"
+#include "LuaBindings.hpp"
 #include "SDL.h"
 #include <iostream>
 #include <luabind/object.hpp>
@@ -16,27 +17,34 @@ void Application::create()
     if((mSurface = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE | SDL_GL_DOUBLEBUFFER | SDL_OPENGL)) == NULL)
         throw "Could not set video-mode";
 
-////    bindToLua<SceneWrapper>(mLuaState);
-//    bindToLua<ActorWrapper>(mLuaState);
-//    bindToLua<input::Keys>(mLuaState);
-//    bindToLua<ContextWrapper>(mLuaState);
+    bindToLua<SceneWrapper>(mLuaState);
+    bindToLua<ActorWrapper>(mLuaState);
+    bindToLua<ContextWrapper>(mLuaState);
 
-//    luaL_dostring(mLuaState, "print('touch me tender')");
+    bindToLua<input::Keys>(mLuaState);
 
-////    luabind::globals(mLuaState)["ctx"] = mContext;
-////    luabind::globals(mLuaState)["ctx"] = "This is the context string";
+    luaL_dostring(mLuaState, "print('touch me tender')");
 
-//    string script = "print('HELLO?')\n"
-//            "ctx = Context()\n"
-//            "print(ctx)\n";
+    //TODO : This is a leak, I think i read it causes a crash when we try to destroy the objects.
+    //TODO : Read this and work out a solution. http://sylefeb.blogspot.ca/2010/08/luabind-global-tables-of-classes.html
+    //luabind::globals(mLuaState)["ctx"] = mContext;
 
-//    if(luaL_dostring(mLuaState, script.c_str()))
-//    {
-//        cerr << "LUA EXCEPTION!" << endl;
-//        cerr << lua_tostring(mLuaState, -1) << endl;
+    {
+        luabind::object groutTable = luabind::newtable(mLuaState);
+        groutTable[ "ctx" ] = mContext;
 
-//        //lua_pop()
-//    }
+        luabind::globals(mLuaState)["grout"] = groutTable;
+    }
+
+    string script = "print(grout.ctx)\n";
+
+    if(luaL_dostring(mLuaState, script.c_str()))
+    {
+        cerr << "LUA EXCEPTION!" << endl;
+        cerr << lua_tostring(mLuaState, -1) << endl;
+
+        //lua_pop()
+    }
 
     //mUpdateController.addUpdateable(mContext.getScene());
 

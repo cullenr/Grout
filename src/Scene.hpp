@@ -2,11 +2,10 @@
     #define SCENE_H
 
 #include "IUpdateable.hpp"
-#include "LuaState.hpp"
-#include "Actor.hpp"
-#include <luabind/luabind.hpp>
 #include <iostream>
 #include <list>
+
+class Actor;
 
 class Scene : public IUpdateable
 {
@@ -15,12 +14,12 @@ class Scene : public IUpdateable
 	public:
 		Scene()
 		{
-            std::cout << "LEVEL CREATED" << std::endl;
+            std::cout << "SCENE CREATED" << std::endl;
 		}
 
 		~Scene()
 		{	
-            std::cout << "LEVEL DESTROYED" << std::endl;
+            std::cout << "SCENE DESTROYED" << std::endl;
 		}
 
         void update();
@@ -29,31 +28,5 @@ class Scene : public IUpdateable
         void addActor(Actor *actor);
         void removeActor(Actor *actor);
 };
-
-//struct SceneWrapper : Scene, luabind::wrap_base
-//{
-//    SceneWrapper(): Scene(){}
-
-//    virtual void onUpdate()
-//    {
-//        call<void>("onUpdate");
-//    }
-
-//    static void defaultOnUpdate(Scene* ptr)
-//    {
-//        return ptr->Scene::onUpdate();
-//    }
-
-//    static void bindToLua(LuaState &luaState)
-//    {
-//        luabind::module(luaState)
-//        [
-//            luabind::class_<Scene, SceneWrapper>("Scene")
-//                .def(luabind::constructor<>())
-//                .def("addActor", (void(Scene::*)(Actor*))&Scene::addActor)
-//                .def("onUpdate", &Scene::onUpdate, &SceneWrapper::defaultOnUpdate)
-//        ];
-//    }
-//};
 
 #endif

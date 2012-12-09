@@ -7,6 +7,7 @@
 class LuaState
 {
 	lua_State *L;
+    bool isReleased;
 
 public:
   	LuaState() : L(luaL_newstate())
@@ -17,10 +18,20 @@ public:
 	
 	~LuaState() 
 	{
-		lua_close(L);
-        std::cout << "DESTROY LUASTATE" << std::endl;
+        release();
 	}
 	
+    bool release()
+    {
+        if(!isReleased)
+        {
+            lua_close(L);
+            std::cout << "DESTROY LUASTATE" << std::endl;
+
+            isReleased = true;
+        }
+    }
+
 	inline operator lua_State *()
     {
 		return L;

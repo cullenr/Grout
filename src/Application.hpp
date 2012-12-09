@@ -1,7 +1,7 @@
 #ifndef APPLICATION_H
     #define APPLICATION_H
 #include "SDL.h"
-#include "SDL_main.h"
+//#include "SDL_main.h"
 #include "LuaState.hpp"
 #include "Context.hpp"
 //#include "UpdateController.hpp"
@@ -19,14 +19,14 @@ class Application
 {
     private:
         SDL_Surface *mSurface;
-        LuaState mLuaState;
         //UpdateController mUpdateController;
-        Context mContext;
+        Context *mContext;
+        LuaState mLuaState;
         bool mRunning;
 
         void pollEvents();
     public:
-        Application()
+        Application() : mContext(new Context())
         {
             mSurface = NULL;
 
@@ -36,6 +36,8 @@ class Application
         {
             SDL_FreeSurface(mSurface);
             SDL_Quit();
+
+            delete mContext;
 
             std::cout << "APPLICATION::DESTROY" << std::endl;
         };

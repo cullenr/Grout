@@ -1,9 +1,7 @@
 #ifndef ACTOR_H
     #define ACTOR_H
-//#include "Context.hpp"
+
 #include "IUpdateable.hpp"
-#include "LuaState.hpp"
-#include <luabind/luabind.hpp>
 #include <iostream>
 #include <list>
 
@@ -38,22 +36,4 @@ inline std::ostream& operator<<(std::ostream &strm, const Actor &a)
 {
   return strm << "Acror" << std::endl;
 }
-
-//struct ActorWrapper : Actor, luabind::wrap_base
-//{
-//    ActorWrapper(Context *context) : Actor(context)
-//    {
-//    }
-
-//    static void bindToLua(LuaState &luaState)
-//    {
-//        luabind::module(luaState)
-//        [
-//            luabind::class_<Actor, ActorWrapper>("Actor")
-//            .def(luabind::constructor<Context *>())
-//            .def("addComponent", (void(Actor::*)(IComponent*))&Actor::addComponent)
-//        ];
-//    }
-//};
-
 #endif
