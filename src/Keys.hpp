@@ -18,19 +18,6 @@ namespace input
         static void update(uint8_t* newState);
 
         static bool isKeyPressed(int keyCode);
-
-        static void bindToLua(LuaState &luaState)
-        {
-            luabind::module(luaState)
-            [
-                luabind::class_<Keys>("Keys")
-                    .def(luabind::constructor<>())
-                    .scope
-                    [
-                        luabind::def("isKeyDown", &Keys::isKeyPressed)
-                    ]
-            ];
-        }
 	};
 };
 

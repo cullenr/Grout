@@ -9,12 +9,6 @@
 #include <list>
 #include <iostream>
 
-template<typename T>
-void bindToLua(LuaState &luaState)
-{
-    T::bindToLua(luaState);
-}
-
 class Application
 {
     private:

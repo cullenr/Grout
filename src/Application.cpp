@@ -17,11 +17,7 @@ void Application::create()
     if((mSurface = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE | SDL_GL_DOUBLEBUFFER | SDL_OPENGL)) == NULL)
         throw "Could not set video-mode";
 
-    bindToLua<SceneWrapper>(mLuaState);
-    bindToLua<ActorWrapper>(mLuaState);
-    bindToLua<ContextWrapper>(mLuaState);
-
-    bindToLua<input::Keys>(mLuaState);
+    LuaBindings::bind(mLuaState);
 
     luaL_dostring(mLuaState, "print('touch me tender')");
 

@@ -1,9 +1,11 @@
 #include "Actor.hpp"
 #include "Scene.hpp"
 #include "Context.hpp"
+#include "Keys.hpp"
 #include "LuaState.hpp"
 #include <luabind/luabind.hpp>
 #include <luabind/operator.hpp>
+#include <vector>
 
 struct ActorWrapper : Actor, luabind::wrap_base
 {
@@ -65,3 +67,40 @@ struct ContextWrapper : Context, luabind::wrap_base
         ];
     }
 };
+
+struct KeyWrapper
+{
+    static void bindToLua(LuaState &luaState)
+    {
+        using namespace input;
+
+        luabind::module(luaState)
+        [
+            luabind::class_<Keys>("Keys")
+                .def(luabind::constructor<>())
+                .scope
+                [
+                    luabind::def("isKeyDown", &Keys::isKeyPressed)
+                ]
+        ];
+    }
+};
+
+template<typename T>
+void bindToLua(LuaState &luaState)
+{
+    T::bindToLua(luaState);
+}
+
+class LuaBindings
+{
+public :
+    static void bind(LuaState &luaState)
+    {
+        bindToLua<SceneWrapper>(luaState);
+        bindToLua<ActorWrapper>(luaState);
+        bindToLua<ContextWrapper>(luaState);
+        bindToLua<KeyWrapper>(luaState);
+    }
+};
+
