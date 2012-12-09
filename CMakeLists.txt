@@ -19,6 +19,7 @@ set(PROJECT_SOURCES
     ${PROJECT_SOURCE_DIR}/IUpdateable.h
     ${PROJECT_SOURCE_DIR}/IFixedUpdateable.h
     ${PROJECT_SOURCE_DIR}/Context.h
+    ${PROJECT_SOURCE_DIR}/Context.cpp
     ${PROJECT_SOURCE_DIR}/LuaState.h
     ${PROJECT_SOURCE_DIR}/main.cpp
     ${PROJECT_SOURCE_DIR}/Application.cpp
