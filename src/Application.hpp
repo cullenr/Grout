@@ -9,6 +9,8 @@
 #include <list>
 #include <iostream>
 
+namespace grout
+{
 class Application
 {
     private:
@@ -44,6 +46,7 @@ class Application
         {
             return mRunning;
         }
+};
 };
 
 #endif

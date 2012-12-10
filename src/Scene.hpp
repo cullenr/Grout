@@ -5,8 +5,10 @@
 #include <iostream>
 #include <list>
 
-class Actor;
 
+namespace grout
+{
+class Actor;
 class Scene : public IUpdateable
 {
 	private:
@@ -28,5 +30,12 @@ class Scene : public IUpdateable
         void addActor(Actor *actor);
         void removeActor(Actor *actor);
 };
+};
+
+inline std::ostream& operator<<(std::ostream &strm, const grout::Scene &a)
+{
+  return strm << "Scene" << std::endl;
+}
+
 
 #endif

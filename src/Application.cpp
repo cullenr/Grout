@@ -8,6 +8,7 @@
 #include <luabind/object.hpp>
 
 using namespace std;
+using namespace grout;
 
 void Application::create()
 {
@@ -19,20 +20,12 @@ void Application::create()
 
     LuaBindings::bind(mLuaState);
 
-    luaL_dostring(mLuaState, "print('touch me tender')");
+    luabind::object groutTable = luabind::newtable(mLuaState);
+    groutTable[ "ctx" ] = mContext;
+    luabind::globals(mLuaState)["grout"] = groutTable;
 
-    //TODO : This is a leak, I think i read it causes a crash when we try to destroy the objects.
-    //TODO : Read this and work out a solution. http://sylefeb.blogspot.ca/2010/08/luabind-global-tables-of-classes.html
-    //luabind::globals(mLuaState)["ctx"] = mContext;
-
-    {
-        luabind::object groutTable = luabind::newtable(mLuaState);
-        groutTable[ "ctx" ] = mContext;
-
-        luabind::globals(mLuaState)["grout"] = groutTable;
-    }
-
-    string script = "print(grout.ctx)\n";
+    string script = "local actor = Actor()\n"
+            "grout.ctx.scene:addActor(actor)\n";
 
     if(luaL_dostring(mLuaState, script.c_str()))
     {
@@ -50,6 +43,8 @@ void Application::create()
 void Application::update()
 {
     pollEvents();
+
+    mContext->getScene().update();
 //    mUpdateController.update();
 }
 

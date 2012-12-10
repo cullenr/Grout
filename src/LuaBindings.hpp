@@ -7,9 +7,17 @@
 #include <luabind/operator.hpp>
 #include <vector>
 
+template<typename T>
+void bindToLua(LuaState &luaState)
+{
+    T::bindToLua(luaState);
+}
+
+namespace grout
+{
 struct ActorWrapper : Actor, luabind::wrap_base
 {
-    ActorWrapper(Context *context) : Actor(context)
+    ActorWrapper() : Actor()
     {
     }
 
@@ -18,7 +26,7 @@ struct ActorWrapper : Actor, luabind::wrap_base
         luabind::module(luaState)
         [
             luabind::class_<Actor, ActorWrapper>("Actor")
-            .def(luabind::constructor<Context *>())
+            .def(luabind::constructor<>())
             .def("addComponent", (void(Actor::*)(IComponent*))&Actor::addComponent)
         ];
     }
@@ -63,6 +71,7 @@ struct ContextWrapper : Context, luabind::wrap_base
             luabind::class_<Context, ContextWrapper>("Context")
                 .def(luabind::constructor<>())
                 .def(luabind::tostring(luabind::self))
+                .property("scene", &Context::getScene)
 
         ];
     }
@@ -86,12 +95,6 @@ struct KeyWrapper
     }
 };
 
-template<typename T>
-void bindToLua(LuaState &luaState)
-{
-    T::bindToLua(luaState);
-}
-
 class LuaBindings
 {
 public :
@@ -103,4 +106,4 @@ public :
         bindToLua<KeyWrapper>(luaState);
     }
 };
-
+};

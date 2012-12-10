@@ -4,21 +4,24 @@
 #include "LuaState.hpp"
 #include <luabind/luabind.hpp>
 
+namespace grout
+{
 namespace input
 {
     class Keys
-	{
+    {
     protected :
 
     public :
         static uint8_t *keysDown;
-		Keys(){};
+        Keys(){};
         ~Keys(){};
 
         static void update(uint8_t* newState);
 
         static bool isKeyPressed(int keyCode);
-	};
+    };
+};
 };
 
 #endif

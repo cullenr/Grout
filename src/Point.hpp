@@ -1,8 +1,12 @@
 #ifndef POINT_H
 #define POINT_H
 
-namespace math{
-    struct Point{
+namespace grout
+{
+namespace math
+{
+    struct Point
+    {
         float x;
         float y;
 
@@ -11,5 +15,6 @@ namespace math{
             x = y = 0;
         }
     };
+};
 };
 #endif // POINT_H

@@ -14,7 +14,7 @@ int main(int argc, char* args[])
 {
     printVersion();
 
-    Application* app = new Application();
+    grout::Application* app = new grout::Application();
 
     app->create();
 

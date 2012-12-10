@@ -2,7 +2,7 @@
 #include "Keys.hpp"
 #include <iostream>
 
-using namespace input;
+using namespace grout::input;
 
 uint8_t *Keys::keysDown = NULL;
 

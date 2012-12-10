@@ -4,7 +4,8 @@
 #include "Scene.hpp"
 #include "ComponentModel.hpp"
 
-
+namespace grout
+{
 class Context
 {
     private :
@@ -23,18 +24,19 @@ class Context
             delete mComponentModel;
         }
 
-        const Scene& getScene() const
+        Scene& getScene() const
         {
            return *mScene;
         }
 
-        const ComponentModel& getComponentModel() const
+        ComponentModel& getComponentModel() const
         {
             return *mComponentModel;
         }
 };
+};
 
-inline std::ostream& operator<<(std::ostream &strm, const Context &a)
+inline std::ostream& operator<<(std::ostream &strm, const grout::Context &a)
 {
   return strm << "Context" << std::endl;
 }
