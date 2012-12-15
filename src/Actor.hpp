@@ -14,7 +14,6 @@ class Actor
 {
 	private:
         std::list<IComponent *> mComponents;
-        math::Point position;
 
 	public:
         Actor()
@@ -41,7 +40,7 @@ class Actor
 };
 inline std::ostream& operator<<(std::ostream &strm, const grout::Actor &a)
 {
-    return strm << "Acror" << std::endl;
+    return strm << "Actor" << std::endl;
 }
 
 #endif
