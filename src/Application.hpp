@@ -1,11 +1,10 @@
 #ifndef APPLICATION_H
     #define APPLICATION_H
 #include "SDL.h"
-//#include "SDL_main.h"
 #include "LuaState.hpp"
 #include "Context.hpp"
-//#include "UpdateController.hpp"
 #include "Keys.hpp"
+#include "UpdateVisitor.hpp"
 #include <list>
 #include <iostream>
 
@@ -15,7 +14,7 @@ class Application
 {
     private:
         SDL_Surface *mSurface;
-        //UpdateController mUpdateController;
+        UpdateVisitor mUpdateVisitor;
         Context *mContext;
         LuaState mLuaState;
         bool mRunning;

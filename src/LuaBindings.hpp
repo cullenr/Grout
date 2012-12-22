@@ -1,3 +1,6 @@
+#include "IComponent.hpp"
+#include "Transform.hpp"
+#include "Renderer.hpp"
 #include "Actor.hpp"
 #include "Scene.hpp"
 #include "Context.hpp"
@@ -15,6 +18,7 @@ void bindToLua(LuaState &luaState)
 
 namespace grout
 {
+
 struct ActorWrapper : Actor, luabind::wrap_base
 {
     ActorWrapper() : Actor()
@@ -27,7 +31,9 @@ struct ActorWrapper : Actor, luabind::wrap_base
         [
             luabind::class_<Actor, ActorWrapper>("Actor")
             .def(luabind::constructor<>())
-            .def("addComponent", (void(Actor::*)(IComponent*))&Actor::addComponent)
+            .def("addComponent", (void(Actor::*)(std::string, IComponent*))&Actor::addComponent)
+            .def("getComponent", &Actor::getComponent)
+            .def(luabind::tostring(luabind::self))
         ];
     }
 };
@@ -54,25 +60,7 @@ struct SceneWrapper : Scene, luabind::wrap_base
                 .def(luabind::constructor<>())
                 .def("addActor", (void(Scene::*)(Actor*))&Scene::addActor)
                 .def("onUpdate", &Scene::onUpdate, &SceneWrapper::defaultOnUpdate)
-        ];
-    }
-};
-
-struct ContextWrapper : Context, luabind::wrap_base
-{
-    ContextWrapper() : Context()
-    {
-    }
-
-    static void bindToLua(LuaState &luaState)
-    {
-        luabind::module(luaState)
-        [
-            luabind::class_<Context, ContextWrapper>("Context")
-                .def(luabind::constructor<>())
                 .def(luabind::tostring(luabind::self))
-                .property("scene", &Context::getScene)
-
         ];
     }
 };
@@ -86,6 +74,7 @@ struct KeyWrapper
         luabind::module(luaState)
         [
             luabind::class_<Keys>("Keys")
+                .def(luabind::tostring(luabind::self))
                 .def(luabind::constructor<>())
                 .scope
                 [
@@ -100,9 +89,31 @@ class LuaBindings
 public :
     static void bind(LuaState &luaState)
     {
+        luabind::module(luaState)
+        [
+            luabind::class_<IComponent>("IComponent")
+                .def(luabind::constructor<>())
+                .def("accept", &IComponent::accept),
+
+            luabind::class_<Transform, IComponent>("Transform")
+                .def(luabind::constructor<>())
+                .def(luabind::tostring(luabind::self))
+                .def("accept", &Transform::accept),
+
+            luabind::class_<Renderer, IComponent>("Renderer")
+                .def(luabind::constructor<>())
+                .def(luabind::tostring(luabind::self))
+                .def("accept", &Renderer::accept),
+
+            luabind::class_<Context>("Context")
+                .def(luabind::constructor<>())
+                .def(luabind::tostring(luabind::self))
+                .property("scene", &Context::getScene)
+
+        ];
+
         bindToLua<SceneWrapper>(luaState);
         bindToLua<ActorWrapper>(luaState);
-        bindToLua<ContextWrapper>(luaState);
         bindToLua<KeyWrapper>(luaState);
     }
 };

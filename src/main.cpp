@@ -1,4 +1,3 @@
-//#include "Application.hpp"
 #include "Application.hpp"
 #include "config.hpp"
 #include <iostream>

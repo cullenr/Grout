@@ -24,7 +24,11 @@ void Application::create()
     groutTable[ "ctx" ] = mContext;
     luabind::globals(mLuaState)["grout"] = groutTable;
 
-    string script = "local actor = Actor()\n"
+    string script = "actor = Actor()\n"
+            "transform = Transform()\n"
+            "actor:addComponent('myTransform', transform)\n"
+            "renderer = Renderer()\n"
+            "actor:addComponent('myRenderer', renderer)\n"
             "grout.ctx.scene:addActor(actor)\n";
 
     if(luaL_dostring(mLuaState, script.c_str()))
@@ -35,8 +39,6 @@ void Application::create()
         //lua_pop()
     }
 
-    //mUpdateController.addUpdateable(mContext.getScene());
-
     mRunning = true;
 }
 
@@ -44,8 +46,9 @@ void Application::update()
 {
     pollEvents();
 
-    mContext->getScene().update();
-//    mUpdateController.update();
+    mContext->getScene().visit(mUpdateVisitor);
+
+    mRunning = false;
 }
 
 void Application::draw()

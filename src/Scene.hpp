@@ -1,6 +1,5 @@
 #ifndef SCENE_H
     #define SCENE_H
-
 #include "IUpdateable.hpp"
 #include <iostream>
 #include <list>
@@ -9,6 +8,8 @@
 namespace grout
 {
 class Actor;
+class IVisitor;
+
 class Scene : public IUpdateable
 {
 	private:
@@ -24,11 +25,11 @@ class Scene : public IUpdateable
             std::cout << "SCENE DESTROYED" << std::endl;
 		}
 
-        void update();
+        void visit(IVisitor &);
         void render();
         virtual void onUpdate(){};
-        void addActor(Actor *actor);
-        void removeActor(Actor *actor);
+        void addActor(Actor *);
+        void removeActor(Actor *);
 };
 };
 
@@ -36,6 +37,5 @@ inline std::ostream& operator<<(std::ostream &strm, const grout::Scene &a)
 {
   return strm << "Scene" << std::endl;
 }
-
 
 #endif

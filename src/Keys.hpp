@@ -24,4 +24,9 @@ namespace input
 };
 };
 
+inline std::ostream& operator<<(std::ostream &strm, const grout::input::Keys &a)
+{
+    return strm << "PlayerController" << std::endl;
+}
+
 #endif

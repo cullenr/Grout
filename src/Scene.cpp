@@ -1,18 +1,27 @@
 #include "Scene.hpp"
 #include "Actor.hpp"
+#include "IVisitor.hpp"
 #include <iostream>
 
 using namespace grout;
 
-void Scene::update()
+void Scene::visit(IVisitor &visitor)
 {
-    std::list<Actor*>::iterator i;
+    std::list<Actor*>::iterator actorItr;
 
-    for(i = mActors.begin();
-        i != mActors.end();
-        ++i)
+    for(actorItr = mActors.begin();
+        actorItr!= mActors.end();
+        ++actorItr)
     {
-        (*i)->update();
+        std::vector<std::pair<std::string *, IComponent *> > components = (*actorItr)->getComponents();
+        std::vector<std::pair<std::string *, IComponent *> >::iterator componentItr;
+
+        for (componentItr = components.begin();
+             componentItr != components.end();
+             ++componentItr)
+        {
+            componentItr->second->accept(&visitor);
+        }
     }
 
     onUpdate();

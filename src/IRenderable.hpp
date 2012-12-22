@@ -4,7 +4,8 @@
 #include "IComponent.hpp"
 #include "LuaState.hpp"
 
-class IRenderable : public IComponent{
+class IRenderable// : public IComponent
+{
 private :
 
 public :

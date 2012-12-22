@@ -13,13 +13,21 @@ set(GROUT_VERSION_MINOR 1)
 
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(PROJECT_SOURCES
+    ${PROJECT_SOURCE_DIR}/Renderer.cpp
+    ${PROJECT_SOURCE_DIR}/Renderer.hpp
+    ${PROJECT_SOURCE_DIR}/IComponent.cpp
+    ${PROJECT_SOURCE_DIR}/IComponent.hpp
+    ${PROJECT_SOURCE_DIR}/Transform.cpp
+    ${PROJECT_SOURCE_DIR}/Transform.hpp
+    ${PROJECT_SOURCE_DIR}/IVisitor.cpp
+    ${PROJECT_SOURCE_DIR}/IVisitor.hpp
+    ${PROJECT_SOURCE_DIR}/UpdateVisitor.cpp
+    ${PROJECT_SOURCE_DIR}/PlayerController.cpp
+    ${PROJECT_SOURCE_DIR}/PlayerController.hpp
     ${PROJECT_SOURCE_DIR}/Point.hpp
     ${PROJECT_SOURCE_DIR}/LuaBindings.hpp
     ${PROJECT_SOURCE_DIR}/IUpdateable.hpp
-    ${PROJECT_SOURCE_DIR}/IComponent.hpp
     ${PROJECT_SOURCE_DIR}/IRenderable.hpp
-    ${PROJECT_SOURCE_DIR}/IUpdateable.hpp
-    ${PROJECT_SOURCE_DIR}/IFixedUpdateable.hpp
     ${PROJECT_SOURCE_DIR}/Context.hpp
     ${PROJECT_SOURCE_DIR}/Context.cpp
     ${PROJECT_SOURCE_DIR}/LuaState.hpp
@@ -27,8 +35,6 @@ set(PROJECT_SOURCES
     ${PROJECT_SOURCE_DIR}/Application.cpp
     ${PROJECT_SOURCE_DIR}/Scene.cpp
     ${PROJECT_SOURCE_DIR}/Actor.cpp
-    ${PROJECT_SOURCE_DIR}/ComponentModel.cpp
-    ${PROJECT_SOURCE_DIR}/UpdateController.cpp
     ${PROJECT_SOURCE_DIR}/Keys.cpp
     )
 
