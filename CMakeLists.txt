@@ -15,6 +15,7 @@ set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(PROJECT_SOURCES
     ${PROJECT_SOURCE_DIR}/Renderer.cpp
     ${PROJECT_SOURCE_DIR}/Renderer.hpp
+    ${PROJECT_SOURCE_DIR}/Rectangle.hpp
     ${PROJECT_SOURCE_DIR}/IComponent.cpp
     ${PROJECT_SOURCE_DIR}/IComponent.hpp
     ${PROJECT_SOURCE_DIR}/Transform.cpp

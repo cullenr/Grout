@@ -10,11 +10,19 @@ namespace math
         float x;
         float y;
 
-        Point()
+        Point() : x(0.f), y(0.f)
         {
-            x = y = 0;
+        }
+
+        Point(float x, float y) : x(x), y(y)
+        {
         }
     };
 };
 };
+
+inline std::ostream& operator<<(std::ostream &strm, const grout::math::Point &a)
+{
+    return strm << "Point: " << a.x << ", " << a.y << std::endl;
+}
 #endif // POINT_H

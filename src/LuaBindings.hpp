@@ -6,6 +6,8 @@
 #include "Context.hpp"
 #include "Keys.hpp"
 #include "LuaState.hpp"
+#include "Point.hpp"
+#include "Rectangle.hpp"
 #include <luabind/luabind.hpp>
 #include <luabind/operator.hpp>
 #include <vector>
@@ -108,7 +110,15 @@ public :
             luabind::class_<Context>("Context")
                 .def(luabind::constructor<>())
                 .def(luabind::tostring(luabind::self))
-                .property("scene", &Context::getScene)
+                .property("scene", &Context::getScene),
+
+            luabind::class_<math::Point>("Point")
+                .def(luabind::constructor<>())
+                .def(luabind::constructor<float, float>())
+                .def(luabind::tostring(luabind::self))
+                .property("x", &math::Point::x)
+                .property("y", &math::Point::y)
+
 
         ];
 
