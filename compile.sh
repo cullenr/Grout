@@ -10,6 +10,6 @@ mkdir $BUILD_DIR
 
 cd $BUILD_DIR
 
-cmake -Wdev -DSDL_BUILDING_LIBRARY=FALSE -G"MSYS Makefiles" .. 
+cmake -Wdev -DSDL_BUILDING_LIBRARY=FALSE -G"MSYS Makefiles" -DADD_TESTS=TRUE .. 
 
 make VERBOSE=1

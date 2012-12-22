@@ -1,10 +1,7 @@
 #ifndef APPLICATION_H
     #define APPLICATION_H
 #include "SDL.h"
-#include "LuaState.hpp"
-#include "Context.hpp"
-#include "Keys.hpp"
-#include "UpdateVisitor.hpp"
+#include "Game.hpp"
 #include <list>
 #include <iostream>
 
@@ -13,31 +10,27 @@ namespace grout
 class Application
 {
     private:
+        Game *mGame;
         SDL_Surface *mSurface;
-        UpdateVisitor mUpdateVisitor;
-        Context *mContext;
-        LuaState mLuaState;
         bool mRunning;
 
         void pollEvents();
     public:
-        Application() : mContext(new Context())
+        Application() : mGame(NULL), mSurface(NULL)
         {
-            mSurface = NULL;
-
             std::cout << "APPLICATION::CREATE" << std::endl;
         };
         ~Application()
         {
+            delete(mGame);
+
             SDL_FreeSurface(mSurface);
             SDL_Quit();
-
-            delete mContext;
-
             std::cout << "APPLICATION::DESTROY" << std::endl;
         };
 
-        void create();
+        void setup();
+        void createGame();
         void update();
         void draw();
 

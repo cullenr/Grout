@@ -13,6 +13,8 @@ set(GROUT_VERSION_MINOR 1)
 
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(PROJECT_SOURCES
+    ${PROJECT_SOURCE_DIR}/Game.cpp
+    ${PROJECT_SOURCE_DIR}/Game.hpp
     ${PROJECT_SOURCE_DIR}/Renderer.cpp
     ${PROJECT_SOURCE_DIR}/Renderer.hpp
     ${PROJECT_SOURCE_DIR}/Rectangle.hpp
@@ -98,6 +100,11 @@ message("Output ===================================================")
 
 if(ADD_TESTS)
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests)
+  
+  if( WIN32 )
+    file(COPY ${CMAKE_SOURCE_DIR}/win/ DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/tests/lua)
+  endif()
+
 endif()
 
 # Install target

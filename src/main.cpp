@@ -15,12 +15,12 @@ int main(int argc, char* args[])
 
     grout::Application* app = new grout::Application();
 
-    app->create();
+    app->setup();
+    app->createGame();
 
     while (app->getIsRunning())
     {
         app->update();
-        app->draw();
     }
 
     delete app;
