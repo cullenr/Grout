@@ -2,3 +2,4 @@ Testing
 build
 .DS_Store
 CMakeLists.txt.user
+*.autosave

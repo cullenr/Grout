@@ -9,8 +9,10 @@
 class SDL_Surface;
 namespace grout
 {
+class Texture;
 class Game
 {
+    Texture *mTexture;
     Context mContext;
     LuaState mLuaState;
     UpdateVisitor mUpdateVisitor;

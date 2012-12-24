@@ -13,6 +13,8 @@ set(GROUT_VERSION_MINOR 1)
 
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(PROJECT_SOURCES
+    ${PROJECT_SOURCE_DIR}/Texture.hpp
+    ${PROJECT_SOURCE_DIR}/Texture.cpp
     ${PROJECT_SOURCE_DIR}/Shader.cpp
     ${PROJECT_SOURCE_DIR}/Shader.hpp
     ${PROJECT_SOURCE_DIR}/Game.cpp
@@ -90,6 +92,12 @@ if(OPENGL_FOUND)
     include_directories(${OPENGL_INCLUDE_DIR})
     target_link_libraries(${EXECUTABLE_NAME} ${OPENGL_LIBRARIES})
     target_link_libraries(${EXECUTABLE_NAME} ${OPENGL_LIBRARIES})
+endif()
+
+find_package(SDL_image REQUIRED)
+if(SDL_IMAGE_FOUND)
+    include_directories(${SDL_IMAGE_INCLUDE_DIRS})
+    target_link_libraries(${EXECUTABLE_NAME} ${SDL_IMAGE_LIBRARIES})
 endif()
 
 find_package(SDL REQUIRED)
