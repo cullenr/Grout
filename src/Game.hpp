@@ -6,6 +6,7 @@
 #include "Context.hpp"
 #include <string>
 
+class SDL_Surface;
 namespace grout
 {
 class Game

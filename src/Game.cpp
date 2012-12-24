@@ -1,5 +1,7 @@
 #include "Game.hpp"
 #include "LuaBindings.hpp"
+#include "SDL.h"
+#include <GL/gl.h>
 #include <luabind/object.hpp>
 #include <iostream>
 
@@ -21,13 +23,6 @@ void Game::load(std::string levelPath)
     groutTable[ "ctx" ] = &mContext;
     luabind::globals(mLuaState)["grout"] = groutTable;
 
-//    std::string script = "actor = Actor()\n"
-//            "transform = Transform()\n"
-//            "actor:addComponent('myTransform', transform)\n"
-//            "renderer = Renderer()\n"
-//            "actor:addComponent('myRenderer', renderer)\n"
-//            "grout.ctx.scene:addActor(actor)\n";
-
     if(luaL_dofile(mLuaState, levelPath.c_str()))
     {
         std::cerr << "LUA EXCEPTION!" << std::endl;
@@ -44,4 +39,13 @@ void Game::update()
 
 void Game::draw()
 {
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glColor3f(1.0f, 0.0f, 0.0f);
+
+    glBegin(GL_TRIANGLES);
+        glVertex3f( 0.0f, 1.0f, 0.0f);
+        glVertex3f(-1.0f,-1.0f, 0.0f);
+        glVertex3f( 1.0f,-1.0f, 0.0f);
+    glEnd();
 }

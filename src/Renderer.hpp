@@ -9,6 +9,7 @@ class IVisitor;
 class Renderer : public IComponent
 {
 public:
+
     Renderer();
     ~Renderer();
 

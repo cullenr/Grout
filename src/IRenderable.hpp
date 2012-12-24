@@ -3,13 +3,19 @@
 
 #include "IComponent.hpp"
 #include "LuaState.hpp"
+#include "Rectangle.hpp"
 
-class IRenderable// : public IComponent
+namespace grout
 {
-private :
-
+class IRenderable
+{
 public :
+    math::Rectangle bounds;
 
+    virtual ~IRenderable(){};
+    virtual void draw() = 0;
+
+};
 };
 
 #endif // IRENDERABLE

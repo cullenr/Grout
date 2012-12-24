@@ -2,12 +2,15 @@
 #define TRANSFORM_H
 
 #include "IComponent.hpp"
+#include "Point.hpp"
 
 namespace grout
 {
 class Transform : public IComponent
 {   
 public:
+    math::Point point;
+
     Transform();
     ~Transform();
 
