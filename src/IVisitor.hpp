@@ -5,7 +5,10 @@ namespace grout
 {
 class PlayerController;
 class Transform;
-class Renderer;
+class Sprite;
+class Animation;
+class AnimationSequence;
+class TilemapLayer;
 
 struct IVisitor
 {
@@ -14,7 +17,9 @@ struct IVisitor
 
     virtual void visit(PlayerController *) = 0;
     virtual void visit(Transform *) = 0;
-    virtual void visit(Renderer *) = 0;
+    virtual void visit(Sprite *) = 0;
+    virtual void visit(Animation *) = 0;
+    virtual void visit(AnimationSequence *) = 0;
 };
 };
 #endif // IVISITOR_H

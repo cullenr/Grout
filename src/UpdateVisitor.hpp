@@ -6,11 +6,6 @@
 
 namespace grout
 {
-class Actor;
-class Transform;
-class Renderer;
-class PlayerController;
-
 class UpdateVisitor : public IVisitor
 {
 public:
@@ -19,8 +14,10 @@ public:
 
     void visit(PlayerController *);
     void visit(Transform *);
-    void visit(Renderer *);
-
+    void visit(Sprite *);
+    void visit(Animation *);
+    void visit(AnimationSequence *);
+    void visit(TilemapLayer *);
 };
 };
 

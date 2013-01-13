@@ -1,19 +1,18 @@
 #include "Texture.hpp"
+#include "IVisitor.hpp"
 #include <string>
-
+#include <iostream>
 //We need this to support GL_BGRA which is defined as an extension on windows,
 //on other platforms this exists in GL/gl.h
 #if defined(__WIN32__)
     #include <GL/glext.h>
 #endif
 
-#include <iostream>
-
 using namespace grout;
 
 Texture::Texture(std::string file)
 {
-    SDL_Surface *surface = IMG_Load("assets/snorlax.png");
+    SDL_Surface *surface = IMG_Load(file.c_str());
 
     if(surface == NULL)
         std::cerr << file << " not found" << std::endl;
@@ -21,7 +20,7 @@ Texture::Texture(std::string file)
     glGenTextures(1, &textureId);
     glBindTexture(GL_TEXTURE_2D, textureId);
 
-    GLint bytesPerPixel = surface->format->BytesPerPixel;
+    int bytesPerPixel = surface->format->BytesPerPixel;
     GLenum textureFormat;
 
     switch(bytesPerPixel)
@@ -35,7 +34,7 @@ Texture::Texture(std::string file)
             GL_RGB : GL_BGR;
         break;
         default :
-            std::cerr << " Bad colour format" << bytesPerPixel << std::endl;
+            std::cerr << file <<" Bad colour format " << bytesPerPixel << std::endl;
     }
 
     glTexImage2D( GL_TEXTURE_2D, 0, bytesPerPixel, surface->w, surface->h, 0,

@@ -1,4 +1,5 @@
 #include "IComponent.hpp"
+#include "IVisitor.hpp"
 #include <iostream>
 
 using namespace grout;

@@ -13,14 +13,24 @@ set(GROUT_VERSION_MINOR 1)
 
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(PROJECT_SOURCES
+    ${PROJECT_SOURCE_DIR}/IRenderable.hpp
+    ${PROJECT_SOURCE_DIR}/Viewport.hpp
+    ${PROJECT_SOURCE_DIR}/GuiLayer.hpp
+    ${PROJECT_SOURCE_DIR}/GuiLayer.cpp
+    ${PROJECT_SOURCE_DIR}/RenderController.hpp
+    ${PROJECT_SOURCE_DIR}/RenderController.cpp
+    ${PROJECT_SOURCE_DIR}/AnimationSequence.hpp
+    ${PROJECT_SOURCE_DIR}/AnimationSequence.cpp
+    ${PROJECT_SOURCE_DIR}/Animation.hpp
+    ${PROJECT_SOURCE_DIR}/Animation.cpp
+    ${PROJECT_SOURCE_DIR}/Sprite.hpp
+    ${PROJECT_SOURCE_DIR}/Sprite.cpp
     ${PROJECT_SOURCE_DIR}/Texture.hpp
     ${PROJECT_SOURCE_DIR}/Texture.cpp
     ${PROJECT_SOURCE_DIR}/Shader.cpp
     ${PROJECT_SOURCE_DIR}/Shader.hpp
     ${PROJECT_SOURCE_DIR}/Game.cpp
     ${PROJECT_SOURCE_DIR}/Game.hpp
-    ${PROJECT_SOURCE_DIR}/Renderer.cpp
-    ${PROJECT_SOURCE_DIR}/Renderer.hpp
     ${PROJECT_SOURCE_DIR}/Rectangle.hpp
     ${PROJECT_SOURCE_DIR}/IComponent.cpp
     ${PROJECT_SOURCE_DIR}/IComponent.hpp
@@ -33,8 +43,6 @@ set(PROJECT_SOURCES
     ${PROJECT_SOURCE_DIR}/PlayerController.hpp
     ${PROJECT_SOURCE_DIR}/Point.hpp
     ${PROJECT_SOURCE_DIR}/LuaBindings.hpp
-    ${PROJECT_SOURCE_DIR}/IUpdateable.hpp
-    ${PROJECT_SOURCE_DIR}/IRenderable.hpp
     ${PROJECT_SOURCE_DIR}/Context.hpp
     ${PROJECT_SOURCE_DIR}/Context.cpp
     ${PROJECT_SOURCE_DIR}/LuaState.hpp
@@ -91,7 +99,6 @@ find_package(OpenGL REQUIRED)
 if(OPENGL_FOUND)
     include_directories(${OPENGL_INCLUDE_DIR})
     target_link_libraries(${EXECUTABLE_NAME} ${OPENGL_LIBRARIES})
-    target_link_libraries(${EXECUTABLE_NAME} ${OPENGL_LIBRARIES})
 endif()
 
 find_package(SDL_image REQUIRED)
@@ -107,11 +114,10 @@ if(SDL_FOUND)
 endif()
 
 if(CMAKE_COMPILER_IS_GNUCXX)
-    #set(CMAKE_CXX_FLAGS "-static-libstdc++ -static-libgcc")
-    #set(LINK_FLAGS ${LINK_FLAGS} "-static-libgcc")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+    set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
 endif()
 
-set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
 
 message("Output ===================================================")
 

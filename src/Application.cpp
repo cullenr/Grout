@@ -5,6 +5,18 @@
 
 using namespace grout;
 
+Application::Application(): mSurface(NULL)
+{
+    std::cout << "APPLICATION::CREATE" << std::endl;
+}
+
+Application::~Application()
+{
+    SDL_FreeSurface(mSurface);
+    SDL_Quit();
+    std::cout << "APPLICATION::DESTROY" << std::endl;
+}
+
 void Application::setup()
 {
     int videoFlags;
@@ -43,8 +55,7 @@ void Application::setup()
 
 void Application::createGame()
 {
-    mGame = new Game();
-    mGame->load("assets/level.lua");
+    mGame.load("assets/level.lua");
 
     mRunning = true;
 }
@@ -53,8 +64,7 @@ void Application::update()
 {
     pollEvents();
 
-    mGame->update();
-    mGame->draw();
+    mGame.applyVisitor(mUpdateVisitor);
 
     SDL_GL_SwapBuffers();
 }

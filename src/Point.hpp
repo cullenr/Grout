@@ -1,5 +1,7 @@
-#ifndef POINT_H
-#define POINT_H
+#ifndef POINT_HPP
+#define POINT_HPP
+
+#include <ostream>
 
 namespace grout
 {
@@ -23,6 +25,6 @@ namespace math
 
 inline std::ostream& operator<<(std::ostream &strm, const grout::math::Point &a)
 {
-    return strm << "Point: " << a.x << ", " << a.y << std::endl;
+    return strm << "Point: (" << a.x << ", " << a.y << ')' << std::endl;
 }
-#endif // POINT_H
+#endif // POINT_HPP

@@ -1,17 +1,13 @@
 #ifndef SHADER_HPP
 #define SHADER_HPP
 
-#include "IRenderable.hpp"
-
 namespace grout
 {
-class Shader : public IRenderable
+class Shader
 {
 public:
     Shader();
     ~Shader();
-
-    void draw();
 };
 };
 

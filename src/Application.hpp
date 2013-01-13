@@ -1,6 +1,7 @@
 #ifndef APPLICATION_H
     #define APPLICATION_H
 #include "SDL.h"
+#include "UpdateVisitor.hpp"
 #include "Game.hpp"
 #include <list>
 #include <iostream>
@@ -10,24 +11,15 @@ namespace grout
 class Application
 {
     private:
-        Game *mGame;
+        UpdateVisitor mUpdateVisitor;
+        Game mGame;
         SDL_Surface *mSurface;
         bool mRunning;
 
         void pollEvents();
     public:
-        Application() : mGame(NULL), mSurface(NULL)
-        {
-            std::cout << "APPLICATION::CREATE" << std::endl;
-        };
-        ~Application()
-        {
-            delete(mGame);
-
-            SDL_FreeSurface(mSurface);
-            SDL_Quit();
-            std::cout << "APPLICATION::DESTROY" << std::endl;
-        };
+        Application();
+        ~Application();
 
         void setup();
         void createGame();

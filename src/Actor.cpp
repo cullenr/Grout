@@ -1,34 +1,25 @@
+#include "IComponent.hpp"
 #include "Actor.hpp"
-#include <iostream>
+#include <ostream>
 #include <string>
 
 using namespace grout;
 
-void Actor::update()
-{
-    //std::cout << "update actor" << std::endl;
-}
-
 void Actor::addComponent(std::string key, IComponent *component)
 {
-    mComponents.push_back(std::make_pair(&key, component));
+    components.push_back(std::make_pair(&key, component));
 }
 
 IComponent* Actor::getComponent(std::string &key)
 {
     std::vector<std::pair<std::string *, IComponent *> >::iterator itr;
 
-    for(itr = mComponents.begin(); itr != mComponents.end(); ++itr)
+    for(auto pair : components)
     {
-        if(*(itr->first) == key)
-            return itr->second;
+        if(*(pair.first) == key)
+            return pair.second;
+
     }
 
     return NULL;
-}
-
-
-std::vector<std::pair<std::string *, IComponent *> > Actor::getComponents()
-{
-    return mComponents;
 }

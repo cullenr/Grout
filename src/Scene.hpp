@@ -1,21 +1,19 @@
 #ifndef SCENE_H
     #define SCENE_H
-#include "IUpdateable.hpp"
-#include <iostream>
+#include <ostream>
 #include <list>
-
 
 namespace grout
 {
 class Actor;
 class IVisitor;
 
-class Scene : public IUpdateable
+class Scene
 {
-	private:
-        std::list<Actor *> mActors;
 	public:
-		Scene()
+        std::list<Actor *> actors;
+
+        Scene()
 		{
             std::cout << "SCENE CREATED" << std::endl;
 		}
@@ -26,8 +24,6 @@ class Scene : public IUpdateable
 		}
 
         void visit(IVisitor &);
-        void render();
-        virtual void onUpdate(){};
         void addActor(Actor *);
         void removeActor(Actor *);
 };
@@ -35,7 +31,7 @@ class Scene : public IUpdateable
 
 inline std::ostream& operator<<(std::ostream &strm, const grout::Scene &a)
 {
-  return strm << "Scene" << std::endl;
+    return strm << "Scene" << std::endl;
 }
 
 #endif

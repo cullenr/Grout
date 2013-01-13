@@ -1,21 +1,23 @@
-#ifndef IRENDERABLE_H
-#define IRENDERABLE_H
-
-#include "IComponent.hpp"
-#include "LuaState.hpp"
-#include "Rectangle.hpp"
+#ifndef IRENDERABLE_HPP
+#define IRENDERABLE_HPP
 
 namespace grout
 {
-class IRenderable
+namespace math
 {
-public :
-    math::Rectangle bounds;
+    class Rectangle;
+}
+class Shader;
+class Texture;
 
+struct IRenderable
+{
     virtual ~IRenderable(){};
-    virtual void draw() = 0;
+    virtual Texture* getTexture() const = 0;
+    virtual math::Rectangle* getRectangle() const = 0;
+    virtual Shader* getShader() const = 0;
 
 };
 };
 
-#endif // IRENDERABLE
+#endif // IRENDERABLEPP

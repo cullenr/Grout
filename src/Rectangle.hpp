@@ -2,6 +2,7 @@
 #define RECTANGLE_H
 
 #include "Point.hpp"
+#include <string>
 
 namespace grout
 {
@@ -21,5 +22,11 @@ namespace math
     };
 };
 };
+
+inline std::ostream& operator<<(std::ostream &strm, const grout::math::Rectangle &a)
+{
+    return strm << "Rectangle (" << a.topLeft << ", " << a.bottomRight << ')' << std::endl;
+}
+
 
 #endif // RECTANGLE_H

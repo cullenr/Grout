@@ -1,23 +1,19 @@
-#ifndef ACTOR_H
-    #define ACTOR_H
+#ifndef ACTOR_HPP
+    #define ACTOR_HPP
 
-#include "IUpdateable.hpp"
 #include "Point.hpp"
 #include <iostream>
 #include <vector>
 #include <string>
 #include <utility>
 
-class Context;
-
 namespace grout
 {
 class Actor
 {
-	private:
-        std::vector<std::pair<std::string *, IComponent *> > mComponents;
-
 	public:
+        std::vector<std::pair<std::string *, IComponent *> > components;
+
         Actor()
         {
             std::cout << "ACTOR::CONSTRUCT" << std::endl;
@@ -28,11 +24,8 @@ class Actor
             std::cout << "ACTOR::DESTRUCT" << std::endl;
         }
 
-        virtual void update();
         void addComponent(std::string, IComponent *);
         IComponent* getComponent(std::string &);
-        std::vector<std::pair<std::string *, IComponent *> > getComponents();
-
 };
 };
 

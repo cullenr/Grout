@@ -1,7 +1,7 @@
 #include "Application.hpp"
 #include "config.hpp"
-#include <iostream>
 #include "SDL.h"
+#include <iostream>
 
 void printVersion()
 {

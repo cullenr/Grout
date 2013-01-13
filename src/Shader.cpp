@@ -9,8 +9,3 @@ Shader::Shader()
 Shader::~Shader()
 {
 }
-
-void Shader::draw()
-{
-
-}

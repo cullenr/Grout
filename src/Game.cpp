@@ -1,21 +1,15 @@
 #include "Game.hpp"
+#include "Viewport.hpp"
 #include "LuaBindings.hpp"
 #include "SDL.h"
-#include <GL/gl.h>
+#include "SDL_opengl.h"
 #include <luabind/object.hpp>
-#include <iostream>
-
-
-
-#include "Texture.hpp"
-#include <string>
-
+#include <ostream>
 
 using namespace grout;
 
 Game::Game()
 {
-    mTexture = new Texture("assets/snorlax.png");
 }
 
 Game::~Game()
@@ -24,26 +18,41 @@ Game::~Game()
 
 void Game::load(std::string levelPath)
 {
-    LuaBindings::bind(mLuaState);
-
-    luabind::object groutTable = luabind::newtable(mLuaState);
+    luabind::object groutTable = luabind::newtable(mContext.luaState);
     groutTable[ "ctx" ] = &mContext;
-    luabind::globals(mLuaState)["grout"] = groutTable;
+    luabind::globals(mContext.luaState)["grout"] = groutTable;
 
-    if(luaL_dofile(mLuaState, levelPath.c_str()))
+//    try
+//    {
+//        luaL_loadfile(mLuaState, levelPath.c_str());
+//        lua_pushcfunction(mLuaState, add_file_and_line);
+//        int errfunc = lua_gettop(mLuaState);
+//        int error = lua_pcall(mLuaState, 0, 0, errfunc);
+//        if(error)
+//        {
+//            fprintf(stderr, "Error from pcall: \n");
+//        }
+//    }
+//    catch(const luabind::error& the_error)
+//    {
+//        luabind::object error_msg(luabind::from_stack(the_error.state(), -1));
+//        std::cout << error_msg << std::endl;
+//    }
+
+    if(luaL_dofile(mContext.luaState, levelPath.c_str()))
     {
         std::cerr << "LUA EXCEPTION!" << std::endl;
-        std::cerr << lua_tostring(mLuaState, -1) << std::endl;
-
-        //lua_pop()
+        std::cerr << lua_tostring(mContext.luaState, -1) << std::endl;
     }
 
     GLint iViewport[4];
     glGetIntegerv( GL_VIEWPORT, iViewport );
+    Viewport viewport(iViewport[0], iViewport[0]+iViewport[2], iViewport[1]+iViewport[3], iViewport[1]);
+//    mViewports.push_back(viewport);
 
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
-    glOrtho(iViewport[0], iViewport[0]+iViewport[2], iViewport[1]+iViewport[3], iViewport[1], -1, 1);
+    glOrtho(viewport.left, viewport.right, viewport.bottom, viewport.top, -1, 1);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -53,27 +62,26 @@ void Game::load(std::string levelPath)
     glEnable(GL_TEXTURE_2D);
 }
 
-void Game::update()
+void Game::applyVisitor(IVisitor &visitor)
 {
-    mContext.getScene().visit(mUpdateVisitor);
+    mContext.scene.visit(visitor);
 }
 
-void Game::draw()
-{
-    glClear(GL_COLOR_BUFFER_BIT);
+//void Game::draw()
+//{
+//    glClear(GL_COLOR_BUFFER_BIT);
 
-    glBindTexture(GL_TEXTURE_2D, mTexture->textureId);
+////    glBindTexture(GL_TEXTURE_2D, mTexture->textureId);
 
-    // For Ortho mode, of course
-    int X = 0;
-    int Y = 0;
-    int Width = 80;
-    int Height = 80;
+////    int x = 0;
+////    int y = 0;
+////    int width = 64;
+////    int height = 64;
 
-    glBegin(GL_QUADS);
-        glTexCoord2f(0, 0); glVertex3f(X, Y, 0);
-        glTexCoord2f(1, 0); glVertex3f(X + Width, Y, 0);
-        glTexCoord2f(1, 1); glVertex3f(X + Width, Y + Height, 0);
-        glTexCoord2f(0, 1); glVertex3f(X, Y + Height, 0);
-    glEnd();
-}
+////    glBegin(GL_QUADS);
+////        glTexCoord2f(0, 0); glVertex3f(x, y, 0);
+////        glTexCoord2f(1, 0); glVertex3f(x + width, y, 0);
+////        glTexCoord2f(1, 1); glVertex3f(x + width, y + height, 0);
+////        glTexCoord2f(0, 1); glVertex3f(x, y + height, 0);
+////    glEnd();
+//}
