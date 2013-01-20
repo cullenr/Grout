@@ -37,7 +37,10 @@ Texture::Texture(std::string file)
             std::cerr << file <<" Bad colour format " << bytesPerPixel << std::endl;
     }
 
-    glTexImage2D( GL_TEXTURE_2D, 0, bytesPerPixel, surface->w, surface->h, 0,
+    width = surface->w;
+    height = surface->h;
+
+    glTexImage2D( GL_TEXTURE_2D, 0, bytesPerPixel, width, height, 0,
                   textureFormat, GL_UNSIGNED_BYTE, surface->pixels );
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

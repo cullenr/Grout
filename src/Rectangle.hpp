@@ -1,5 +1,5 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef RECTANGLE_HPP
+#define RECTANGLE_HPP
 
 #include "Point.hpp"
 #include <string>
@@ -10,23 +10,26 @@ namespace math
 {
     struct Rectangle
     {
-        Point topLeft;
-        Point bottomRight;
+        int x;
+        int y;
+        int width;
+        int height;
 
         Rectangle()
+            : x(0), y(0), width(0), height(0)
         {}
 
-        Rectangle(float x, float y, float width, float height) : topLeft(x, y), bottomRight(x + width, y + height)
-        {
-        }
+        Rectangle(float x, float y, float width, float height)
+            : x(x), y(y), width(width), height(height)
+        {}
     };
 };
 };
 
 inline std::ostream& operator<<(std::ostream &strm, const grout::math::Rectangle &a)
 {
-    return strm << "Rectangle (" << a.topLeft << ", " << a.bottomRight << ')' << std::endl;
+    return strm << "Rectangle (" << a.x << ", " << a.y << ", " << a.width << ", " << a.height << ')' << std::endl;
 }
 
 
-#endif // RECTANGLE_H
+#endif // RECTANGLE_HPP

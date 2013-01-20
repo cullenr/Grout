@@ -9,16 +9,18 @@ namespace grout
 {
 class Sprite : public IComponent, public IRenderable
 {
+    Transform *mTransform;
     Texture *mTexture;
     math::Rectangle *mRectangle;
     Shader *mShader;
 
 public :
-    Sprite(Texture *texture, math::Rectangle *rectangle);
+    Sprite(Texture *texture, math::Rectangle *rectangle, Transform *transform);
     ~Sprite();
 
     void accept(IVisitor *visitor);
 
+    Transform* getTransform() const;
     Texture* getTexture() const;
     math::Rectangle* getRectangle() const;
     Shader* getShader() const;

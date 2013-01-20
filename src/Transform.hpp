@@ -9,7 +9,7 @@ namespace grout
 class Transform : public IComponent
 {   
 public:
-    math::Point point;
+    math::Point position;
 
     Transform();
     ~Transform();

@@ -21,6 +21,7 @@ int main(int argc, char* args[])
     while (app->getIsRunning())
     {
         app->update();
+        app->draw();
     }
 
     delete app;

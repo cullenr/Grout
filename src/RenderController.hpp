@@ -3,42 +3,22 @@
 
 #include "Viewport.hpp"
 #include <vector>
+#include <list>
 
 namespace grout
 {
-class Sprite;
+class IRenderable;
+
 class RenderController
 {
+    std::vector<Viewport> mViewports;
+    std::list<IRenderable *> mRenderables;
 public:
     RenderController();
-    void createViewport();
-    void enableViewport();
-    void disableViewport();
-    void begin();
-    void finish();
-};
-
-class RenderContext
-{
-protected :
-    std::vector<Sprite *> mFrame;
-    Viewport &viewport;
-    void begin();
-    bool addSprite(Sprite *);//Called by the library level RenderVisitor
-    void finish();
-
-    RenderContext(Viewport &viewport) : viewport(viewport)
-    {
-    }
+    void addRenderable(IRenderable *);
+    void render();
 };
 };
 
 #endif // RENDERCONTROLLER_HPP
 
-
-//for each ( RenderContextIter rc )
-// rc->begin()
-//
-//updateSprites()
-//=>
-//RenderController

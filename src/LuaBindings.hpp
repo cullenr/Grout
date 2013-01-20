@@ -12,6 +12,8 @@
 #include "Sprite.hpp"
 #include "Animation.hpp"
 #include "AnimationSequence.hpp"
+#include "Layer.hpp"
+#include "LayerChild.hpp"
 
 #include <luabind/iterator_policy.hpp>
 #include <luabind/luabind.hpp>
@@ -61,6 +63,8 @@ struct SceneWrapper : Scene, luabind::wrap_base
                 .def("addActor", &Scene::addActor)
                 .def("removeActor", &Scene::removeActor)
                 .def_readwrite("actors", &Scene::actors, luabind::return_stl_iterator)
+                .def("addRenderLayer", &Scene::addRenderLayer)
+                .def("addPhysicsLayer", &Scene::addPhysicsLayer)
                 .def(luabind::tostring(luabind::self))
         ];
     }
@@ -103,29 +107,41 @@ public :
                 .def(luabind::constructor<>())
                 .def(luabind::constructor<float, float, float, float>())
                 .def(luabind::tostring(luabind::self))
-                .def_readwrite("topLeft", &math::Rectangle::topLeft)
-                .def_readwrite("bottomRight", &math::Rectangle::bottomRight),
+                .def_readwrite("x", &math::Rectangle::x)
+                .def_readwrite("y", &math::Rectangle::y)
+                .def_readwrite("width", &math::Rectangle::width)
+                .def_readwrite("height", &math::Rectangle::height),
 
             luabind::class_<IComponent>("IComponent")
-                .def(luabind::constructor<>()),
+                .def(luabind::constructor<>())
+                .def(luabind::tostring(luabind::self)),
+
+            luabind::class_<LayerChild, IComponent>("LayerChild")
+                .def(luabind::constructor<IComponent *>())
+                .def(luabind::tostring(luabind::self)),
+
+            luabind::class_<Layer, IComponent>("Layer")
+                .def(luabind::constructor<>())
+                .def("addChild", &Layer::addChild)
+                .def("removeChild", &Layer::removeChild)
+                .def(luabind::tostring(luabind::self)),
 
             luabind::class_<Shader>("Shader")
-                .def(luabind::constructor<>()),
+                .def(luabind::constructor<>())
+                .def(luabind::tostring(luabind::self)),
 
             luabind::class_<Texture>("Texture")
                 .def(luabind::constructor<std::string>())
                 .def(luabind::tostring(luabind::self))
                 .def_readonly("textureId", &Texture::textureId),
 
-            luabind::class_<Sprite, IComponent>("Sprite")
-                .def(luabind::constructor<Texture *, math::Rectangle *>())
-                .def(luabind::tostring(luabind::self))
-                .property("texture", &Sprite::getTexture)
-                .property("rectangle", &Sprite::getRectangle)
-                .property("shader", &Sprite::getShader),
-
             luabind::class_<Transform, IComponent>("Transform")
                 .def(luabind::constructor<>())
+                .def_readwrite("position", &Transform::position)
+                .def(luabind::tostring(luabind::self)),
+
+            luabind::class_<Sprite, IComponent>("Sprite")
+                .def(luabind::constructor<Texture *, math::Rectangle *, Transform *>())
                 .def(luabind::tostring(luabind::self)),
 
             luabind::class_<Context>("Context")

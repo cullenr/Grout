@@ -3,14 +3,18 @@
 
 #include "Context.hpp"
 #include <string>
+#include <list>
 #include <vector>
+#include <utility>
 
 class SDL_Surface;
 namespace grout
 {
+class Layer;
 class Game
 {
     Context mContext;
+
 public:
     Game();
     ~Game();

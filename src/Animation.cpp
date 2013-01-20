@@ -13,6 +13,11 @@ void Animation::accept(IVisitor *visitor)
     visitor->visit(this);
 }
 
+Transform* Animation::getTransform() const
+{
+    return mSprites[mFrame]->getTransform();
+}
+
 math::Rectangle* Animation::getRectangle() const
 {
     return mSprites[mFrame]->getRectangle();

@@ -2,6 +2,7 @@
 #define ICOMPONENT_HPP
 
 #include "LuaState.hpp"
+#include <ostream>
 #include <string>
 
 namespace grout

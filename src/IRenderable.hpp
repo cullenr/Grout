@@ -9,14 +9,16 @@ namespace math
 }
 class Shader;
 class Texture;
+class Transform;
 
 struct IRenderable
 {
     virtual ~IRenderable(){};
+
     virtual Texture* getTexture() const = 0;
     virtual math::Rectangle* getRectangle() const = 0;
     virtual Shader* getShader() const = 0;
-
+    virtual Transform* getTransform() const = 0;
 };
 };
 

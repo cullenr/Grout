@@ -16,6 +16,7 @@ class Animation : public IComponent, public IRenderable
 public:
     ~Animation();
 
+    Transform* getTransform() const;
     Texture* getTexture() const;
     math::Rectangle* getRectangle() const;
     Shader* getShader() const;

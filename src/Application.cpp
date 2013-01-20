@@ -5,7 +5,7 @@
 
 using namespace grout;
 
-Application::Application(): mSurface(NULL)
+Application::Application(): mSurface(NULL), mUpdateVisitor(mRenderController)
 {
     std::cout << "APPLICATION::CREATE" << std::endl;
 }
@@ -67,6 +67,11 @@ void Application::update()
     mGame.applyVisitor(mUpdateVisitor);
 
     SDL_GL_SwapBuffers();
+}
+
+void Application::draw()
+{
+    mRenderController.render();
 }
 
 void Application::pollEvents()

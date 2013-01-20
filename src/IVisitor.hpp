@@ -9,6 +9,8 @@ class Sprite;
 class Animation;
 class AnimationSequence;
 class TilemapLayer;
+class Layer;
+class LayerChild;
 
 struct IVisitor
 {
@@ -20,6 +22,8 @@ struct IVisitor
     virtual void visit(Sprite *) = 0;
     virtual void visit(Animation *) = 0;
     virtual void visit(AnimationSequence *) = 0;
+    virtual void visit(Layer *) = 0;
+    virtual void visit(LayerChild *) = 0;
 };
 };
 #endif // IVISITOR_H

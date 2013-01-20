@@ -1,6 +1,7 @@
 #ifndef APPLICATION_H
     #define APPLICATION_H
 #include "SDL.h"
+#include "RenderController.hpp"
 #include "UpdateVisitor.hpp"
 #include "Game.hpp"
 #include <list>
@@ -11,9 +12,10 @@ namespace grout
 class Application
 {
     private:
+        RenderController mRenderController;
+        SDL_Surface *mSurface;
         UpdateVisitor mUpdateVisitor;
         Game mGame;
-        SDL_Surface *mSurface;
         bool mRunning;
 
         void pollEvents();

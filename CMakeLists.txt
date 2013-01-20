@@ -13,44 +13,48 @@ set(GROUT_VERSION_MINOR 1)
 
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(PROJECT_SOURCES
-    ${PROJECT_SOURCE_DIR}/IRenderable.hpp
-    ${PROJECT_SOURCE_DIR}/Viewport.hpp
-    ${PROJECT_SOURCE_DIR}/GuiLayer.hpp
-    ${PROJECT_SOURCE_DIR}/GuiLayer.cpp
-    ${PROJECT_SOURCE_DIR}/RenderController.hpp
-    ${PROJECT_SOURCE_DIR}/RenderController.cpp
-    ${PROJECT_SOURCE_DIR}/AnimationSequence.hpp
-    ${PROJECT_SOURCE_DIR}/AnimationSequence.cpp
-    ${PROJECT_SOURCE_DIR}/Animation.hpp
+    ${PROJECT_SOURCE_DIR}/Actor.cpp
     ${PROJECT_SOURCE_DIR}/Animation.cpp
-    ${PROJECT_SOURCE_DIR}/Sprite.hpp
-    ${PROJECT_SOURCE_DIR}/Sprite.cpp
-    ${PROJECT_SOURCE_DIR}/Texture.hpp
-    ${PROJECT_SOURCE_DIR}/Texture.cpp
-    ${PROJECT_SOURCE_DIR}/Shader.cpp
-    ${PROJECT_SOURCE_DIR}/Shader.hpp
+    ${PROJECT_SOURCE_DIR}/Animation.hpp
+    ${PROJECT_SOURCE_DIR}/AnimationSequence.cpp
+    ${PROJECT_SOURCE_DIR}/AnimationSequence.hpp
+    ${PROJECT_SOURCE_DIR}/Application.cpp
+    ${PROJECT_SOURCE_DIR}/Context.cpp
+    ${PROJECT_SOURCE_DIR}/Context.hpp
     ${PROJECT_SOURCE_DIR}/Game.cpp
     ${PROJECT_SOURCE_DIR}/Game.hpp
-    ${PROJECT_SOURCE_DIR}/Rectangle.hpp
+    ${PROJECT_SOURCE_DIR}/GuiLayer.cpp
+    ${PROJECT_SOURCE_DIR}/GuiLayer.hpp
     ${PROJECT_SOURCE_DIR}/IComponent.cpp
     ${PROJECT_SOURCE_DIR}/IComponent.hpp
-    ${PROJECT_SOURCE_DIR}/Transform.cpp
-    ${PROJECT_SOURCE_DIR}/Transform.hpp
+    ${PROJECT_SOURCE_DIR}/IRenderable.hpp
     ${PROJECT_SOURCE_DIR}/IVisitor.cpp
     ${PROJECT_SOURCE_DIR}/IVisitor.hpp
-    ${PROJECT_SOURCE_DIR}/UpdateVisitor.cpp
+    ${PROJECT_SOURCE_DIR}/Keys.cpp
+    ${PROJECT_SOURCE_DIR}/Layer.cpp
+    ${PROJECT_SOURCE_DIR}/Layer.hpp
+    ${PROJECT_SOURCE_DIR}/LayerChild.cpp
+    ${PROJECT_SOURCE_DIR}/LayerChild.hpp
+    ${PROJECT_SOURCE_DIR}/LuaBindings.hpp
+    ${PROJECT_SOURCE_DIR}/LuaState.hpp
+    ${PROJECT_SOURCE_DIR}/main.cpp
     ${PROJECT_SOURCE_DIR}/PlayerController.cpp
     ${PROJECT_SOURCE_DIR}/PlayerController.hpp
     ${PROJECT_SOURCE_DIR}/Point.hpp
-    ${PROJECT_SOURCE_DIR}/LuaBindings.hpp
-    ${PROJECT_SOURCE_DIR}/Context.hpp
-    ${PROJECT_SOURCE_DIR}/Context.cpp
-    ${PROJECT_SOURCE_DIR}/LuaState.hpp
-    ${PROJECT_SOURCE_DIR}/main.cpp
-    ${PROJECT_SOURCE_DIR}/Application.cpp
+    ${PROJECT_SOURCE_DIR}/Rectangle.hpp
+    ${PROJECT_SOURCE_DIR}/RenderController.cpp
+    ${PROJECT_SOURCE_DIR}/RenderController.hpp
     ${PROJECT_SOURCE_DIR}/Scene.cpp
-    ${PROJECT_SOURCE_DIR}/Actor.cpp
-    ${PROJECT_SOURCE_DIR}/Keys.cpp
+    ${PROJECT_SOURCE_DIR}/Shader.cpp
+    ${PROJECT_SOURCE_DIR}/Shader.hpp
+    ${PROJECT_SOURCE_DIR}/Sprite.cpp
+    ${PROJECT_SOURCE_DIR}/Sprite.hpp
+    ${PROJECT_SOURCE_DIR}/Texture.cpp
+    ${PROJECT_SOURCE_DIR}/Texture.hpp
+    ${PROJECT_SOURCE_DIR}/Transform.cpp
+    ${PROJECT_SOURCE_DIR}/Transform.hpp
+    ${PROJECT_SOURCE_DIR}/UpdateVisitor.cpp
+    ${PROJECT_SOURCE_DIR}/Viewport.hpp
     )
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})

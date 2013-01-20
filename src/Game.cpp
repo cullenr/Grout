@@ -1,6 +1,5 @@
 #include "Game.hpp"
 #include "Viewport.hpp"
-#include "LuaBindings.hpp"
 #include "SDL.h"
 #include "SDL_opengl.h"
 #include <luabind/object.hpp>

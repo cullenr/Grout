@@ -12,6 +12,8 @@ namespace grout
 struct Texture
 {
     GLuint textureId;
+    int width;
+    int height;
 
     Texture(std::string);
     ~Texture();
