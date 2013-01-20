@@ -1,5 +1,5 @@
-#ifndef UPDATEVISITOR_H
-#define UPDATEVISITOR_H
+#ifndef UPDATEVISITOR_HPP
+#define UPDATEVISITOR_HPP
 
 #include "IVisitor.hpp"
 #include "RenderController.hpp"
@@ -22,7 +22,8 @@ public:
     void visit(AnimationSequence *);
     void visit(Layer *);
     void visit(LayerChild *);
+    void visit(InputComponent *);
 };
 };
 
-#endif // UPDATEVISITOR_H
+#endif // UPDATEVISITOR_HPP

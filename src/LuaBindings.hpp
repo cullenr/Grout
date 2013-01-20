@@ -14,6 +14,7 @@
 #include "AnimationSequence.hpp"
 #include "Layer.hpp"
 #include "LayerChild.hpp"
+#include "InputComponent.hpp"
 
 #include <luabind/iterator_policy.hpp>
 #include <luabind/luabind.hpp>
@@ -138,6 +139,11 @@ public :
             luabind::class_<Transform, IComponent>("Transform")
                 .def(luabind::constructor<>())
                 .def_readwrite("position", &Transform::position)
+                .def(luabind::tostring(luabind::self)),
+
+            luabind::class_<InputComponent, IComponent>("InputComponent")
+                .def(luabind::constructor<>())
+                .def("setKeyDownCallback", &InputComponent::setKeyDownCallback)
                 .def(luabind::tostring(luabind::self)),
 
             luabind::class_<Sprite, IComponent>("Sprite")

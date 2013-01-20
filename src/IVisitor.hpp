@@ -11,6 +11,7 @@ class AnimationSequence;
 class TilemapLayer;
 class Layer;
 class LayerChild;
+class InputComponent;
 
 struct IVisitor
 {
@@ -24,6 +25,7 @@ struct IVisitor
     virtual void visit(AnimationSequence *) = 0;
     virtual void visit(Layer *) = 0;
     virtual void visit(LayerChild *) = 0;
+    virtual void visit(InputComponent *) = 0;
 };
 };
 #endif // IVISITOR_H

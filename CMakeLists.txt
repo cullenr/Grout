@@ -27,6 +27,8 @@ set(PROJECT_SOURCES
     ${PROJECT_SOURCE_DIR}/GuiLayer.hpp
     ${PROJECT_SOURCE_DIR}/IComponent.cpp
     ${PROJECT_SOURCE_DIR}/IComponent.hpp
+    ${PROJECT_SOURCE_DIR}/InputComponent.cpp
+    ${PROJECT_SOURCE_DIR}/InputComponent.cpp
     ${PROJECT_SOURCE_DIR}/IRenderable.hpp
     ${PROJECT_SOURCE_DIR}/IVisitor.cpp
     ${PROJECT_SOURCE_DIR}/IVisitor.hpp
