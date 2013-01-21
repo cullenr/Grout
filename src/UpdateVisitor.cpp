@@ -1,6 +1,5 @@
 #include "UpdateVisitor.hpp"
 #include "Transform.hpp"
-#include "PlayerController.hpp"
 #include <iostream>
 
 using namespace grout;
@@ -16,11 +15,6 @@ UpdateVisitor::~UpdateVisitor()
 
 
 //TODO : MOVE ALL OF THESE INTO THEIR RESPECTIVE TRANSLATION UNITS
-
-void UpdateVisitor::visit(PlayerController *playerController)
-{
-    std::cout << "VISITING PLAYERCONTROLLER" << std::endl;
-}
 
 void UpdateVisitor::visit(Transform *transform)
 {

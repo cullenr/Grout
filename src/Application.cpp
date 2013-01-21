@@ -76,8 +76,9 @@ void Application::draw()
 
 void Application::pollEvents()
 {
-    bool updateKeys = false;
     SDL_Event event;
+
+    mKeys.resetKeyUpDown();
 
     while(SDL_PollEvent(&event))
     {
@@ -87,16 +88,11 @@ void Application::pollEvents()
             mRunning = false;
             break;
         case SDL_KEYDOWN :
+            mKeys.setKeyDown(event.key.keysym.sym);
+            break;
         case SDL_KEYUP :
-            updateKeys = true;
+            mKeys.setKeyUp(event.key.keysym.sym);
             break;
         }
-    }
-
-    if(updateKeys)
-    {
-        uint8_t *keyboardState = SDL_GetKeyState(NULL);
-
-        input::Keys::update(keyboardState);
     }
 }

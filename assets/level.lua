@@ -18,7 +18,12 @@ layerChild = LayerChild(sprite)
 layer:addChild(layerChild)
 
 inputComponent = InputComponent()
-inputComponent:setKeyDownCallback(function ()
+inputComponent:setKeyDownCallback(function (val)
+		for datum in val.data do
+			print(datum)
+		end
+
+		-- print(val)
 		transform.position.x = transform.position.x + 1
 	end)
 

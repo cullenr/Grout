@@ -1,6 +1,7 @@
 #ifndef APPLICATION_H
     #define APPLICATION_H
 #include "SDL.h"
+#include "Keys.hpp"
 #include "RenderController.hpp"
 #include "UpdateVisitor.hpp"
 #include "Game.hpp"
@@ -12,6 +13,7 @@ namespace grout
 class Application
 {
     private:
+        input::Keys mKeys;
         RenderController mRenderController;
         SDL_Surface *mSurface;
         UpdateVisitor mUpdateVisitor;

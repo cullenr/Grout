@@ -3,7 +3,7 @@
 #include "Actor.hpp"
 #include "Scene.hpp"
 #include "Context.hpp"
-#include "Keys.hpp"
+//#include "Keys.hpp"
 #include "LuaState.hpp"
 #include "Point.hpp"
 #include "Rectangle.hpp"
@@ -15,6 +15,7 @@
 #include "Layer.hpp"
 #include "LayerChild.hpp"
 #include "InputComponent.hpp"
+#include "CollectionWrapper.hpp"
 
 #include <luabind/iterator_policy.hpp>
 #include <luabind/luabind.hpp>
@@ -71,24 +72,24 @@ struct SceneWrapper : Scene, luabind::wrap_base
     }
 };
 
-struct KeyWrapper
-{
-    static void bindToLua(LuaState &luaState)
-    {
-        using namespace input;
+//struct KeyWrapper
+//{
+//    static void bindToLua(LuaState &luaState)
+//    {
+//        using namespace input;
 
-        luabind::module(luaState)
-        [
-            luabind::class_<Keys>("Keys")
-                .def(luabind::tostring(luabind::self))
-                .def(luabind::constructor<>())
-                .scope
-                [
-                    luabind::def("isKeyDown", &Keys::isKeyPressed)
-                ]
-        ];
-    }
-};
+//        luabind::module(luaState)
+//        [
+//            luabind::class_<Keys>("Keys")
+//                .def(luabind::tostring(luabind::self))
+//                .def(luabind::constructor<>())
+//                .scope
+//                [
+//                    luabind::def("isKeyDown", &Keys::isKeyPressed)
+//                ]
+//        ];
+//    }
+//};
 
 class LuaBindings
 {
@@ -97,6 +98,12 @@ public :
     {
         luabind::module(luaState)
         [
+//            luabind::class_<CollectionWrapper<std::vector<int> > >("CollectionWrapper")
+//                .def(luabind::constructor<std::vector<int> >())
+//                .def("data", &CollectionWrapper<std::vector<int> >::collection, luabind::return_stl_iterator),
+
+            CollectionWrapper<std::vector<int> >::bind(),
+
             luabind::class_<math::Point>("Point")
                 .def(luabind::constructor<>())
                 .def(luabind::constructor<float, float>())
@@ -159,7 +166,7 @@ public :
 
         bindToLua<SceneWrapper>(luaState);
         bindToLua<ActorWrapper>(luaState);
-        bindToLua<KeyWrapper>(luaState);
+        //bindToLua<KeyWrapper>(luaState);
     }
 };
 };

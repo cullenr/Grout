@@ -15,7 +15,6 @@ public:
     UpdateVisitor(RenderController &renderController);
     ~UpdateVisitor();
 
-    void visit(PlayerController *);
     void visit(Transform *);
     void visit(Sprite *);
     void visit(Animation *);

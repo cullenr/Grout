@@ -4,21 +4,36 @@
 
 using namespace grout::input;
 
-uint8_t *Keys::keysDown = NULL;
-
-void Keys::update(uint8_t* newState)
+Keys::Keys()
 {
-    keysDown = newState;
+    mKeysDownThisTick.reserve(10);
+    mKeysUpThisTick.reserve(10);
 }
 
-bool Keys::isKeyPressed(int keyCode)
+void Keys::resetKeyUpDown()
 {
-    if(keyCode > 0 && keyCode < SDLK_LAST && keysDown != NULL)
-    {
-        return keysDown[keyCode];
-    }
-    else
-    {
-        return false;
-    }
+    mKeysDownThisTick.clear();
+    mKeysUpThisTick.clear();
+}
+
+
+void Keys::setKeyDown(int key)
+{
+    mKeysDownThisTick.push_back(key);
+}
+
+void Keys::setKeyUp(int key)
+{
+    mKeysUpThisTick.push_back(key);
+}
+
+
+const std::vector<int>& Keys::getKeysDownThisTick() const
+{
+    return mKeysDownThisTick;
+}
+
+const std::vector<int>& Keys::getKeysUpThisTick() const
+{
+    return mKeysUpThisTick;
 }

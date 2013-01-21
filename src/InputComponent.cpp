@@ -1,6 +1,6 @@
 #include "InputComponent.hpp"
 #include "UpdateVisitor.hpp"
-//#include "luabind/detail/call_function.hpp"
+#include "CollectionWrapper.hpp"
 #include "luabind/luabind.hpp"
 
 using namespace grout;
@@ -37,8 +37,18 @@ void InputComponent::onKeyDown()
 {
     std::cout << "Default onKeyDown" << std::endl;
 
+    std::vector<int> ints = {1, 2, 3};
+
     if(mKeyDownListener.is_valid())
     {
-        luabind::call_function<void>(mKeyDownListener);
+        try
+        {
+//            luabind::call_function<void>(mKeyDownListener, 12);
+            luabind::call_function<void>(mKeyDownListener, new CollectionWrapper<std::vector<int> >(ints));
+        }
+        catch(luabind::error &e)
+        {
+            std::cerr << "onKeyDown listener error, make sure your arguments are correct" << e.what() << std::endl;
+        }
     }
 }

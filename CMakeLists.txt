@@ -40,8 +40,6 @@ set(PROJECT_SOURCES
     ${PROJECT_SOURCE_DIR}/LuaBindings.hpp
     ${PROJECT_SOURCE_DIR}/LuaState.hpp
     ${PROJECT_SOURCE_DIR}/main.cpp
-    ${PROJECT_SOURCE_DIR}/PlayerController.cpp
-    ${PROJECT_SOURCE_DIR}/PlayerController.hpp
     ${PROJECT_SOURCE_DIR}/Point.hpp
     ${PROJECT_SOURCE_DIR}/Rectangle.hpp
     ${PROJECT_SOURCE_DIR}/RenderController.cpp
