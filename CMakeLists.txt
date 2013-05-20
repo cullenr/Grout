@@ -14,6 +14,8 @@ set(GROUT_VERSION_MINOR 1)
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(PROJECT_SOURCES
     ${PROJECT_SOURCE_DIR}/Actor.cpp
+    ${PROJECT_SOURCE_DIR}/PhysicsComponent.cpp
+    ${PROJECT_SOURCE_DIR}/PhysicsController.cpp
     ${PROJECT_SOURCE_DIR}/Animation.cpp
     ${PROJECT_SOURCE_DIR}/Animation.hpp
     ${PROJECT_SOURCE_DIR}/AnimationSequence.cpp
@@ -41,6 +43,7 @@ set(PROJECT_SOURCES
     ${PROJECT_SOURCE_DIR}/LuaState.hpp
     ${PROJECT_SOURCE_DIR}/main.cpp
     ${PROJECT_SOURCE_DIR}/Point.hpp
+    ${PROJECT_SOURCE_DIR}/Point.cpp
     ${PROJECT_SOURCE_DIR}/Rectangle.hpp
     ${PROJECT_SOURCE_DIR}/RenderController.cpp
     ${PROJECT_SOURCE_DIR}/RenderController.hpp

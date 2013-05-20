@@ -78,7 +78,7 @@ void Application::pollEvents()
 {
     SDL_Event event;
 
-    mKeys.resetKeyUpDown();
+    input::Keys::resetKeyUpDown();
 
     while(SDL_PollEvent(&event))
     {
@@ -88,10 +88,10 @@ void Application::pollEvents()
             mRunning = false;
             break;
         case SDL_KEYDOWN :
-            mKeys.setKeyDown(event.key.keysym.sym);
+            input::Keys::setKeyDown(event.key.keysym.sym);
             break;
         case SDL_KEYUP :
-            mKeys.setKeyUp(event.key.keysym.sym);
+            input::Keys::setKeyUp(event.key.keysym.sym);
             break;
         }
     }

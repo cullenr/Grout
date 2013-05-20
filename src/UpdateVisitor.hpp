@@ -15,13 +15,15 @@ public:
     UpdateVisitor(RenderController &renderController);
     ~UpdateVisitor();
 
-    void visit(Transform *);
-    void visit(Sprite *);
     void visit(Animation *);
     void visit(AnimationSequence *);
+    void visit(InputComponent *);
     void visit(Layer *);
     void visit(LayerChild *);
-    void visit(InputComponent *);
+    void visit(PhysicsComponent *);
+    void visit(Sprite *);
+    void visit(Transform *);
+
 };
 };
 

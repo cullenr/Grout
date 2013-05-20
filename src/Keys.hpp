@@ -11,16 +11,16 @@ namespace input
 {
 class Keys
 {
-    std::vector<int> mKeysDownThisTick;//TODO Convert these to structs that include the modifier keys.
-    std::vector<int> mKeysUpThisTick;
+    static std::vector<char> mKeysDownThisTick;//TODO Convert these to structs that include the modifier keys.
+    static std::vector<char> mKeysUpThisTick;
 public :
     Keys();
-    void resetKeyUpDown();
-    void setKeyDown(int);
-    void setKeyUp(int);
+    static void resetKeyUpDown();
+    static void setKeyDown(char);
+    static void setKeyUp(char);
 
-    const std::vector<int>& getKeysDownThisTick() const;
-    const std::vector<int>& getKeysUpThisTick() const;
+    static const std::vector<char>& getKeysDownThisTick();
+    static const std::vector<char>& getKeysUpThisTick();
 };
 };
 };

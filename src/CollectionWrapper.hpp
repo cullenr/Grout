@@ -6,24 +6,6 @@
 #include <utility>
 #include <ostream>
 
-//class CollectionWrapper
-//{
-//public:
-//    std::vector<int> collection;
-
-//    CollectionWrapper(std::vector<int> collection) : collection(collection)
-//    {
-//    }
-
-//    static luabind::scope bind()
-//    {
-//        return luabind::class_<CollectionWrapper>("CollectionWrapper")
-//                .def(luabind::constructor<std::vector<int> >())
-//                .def_readwrite("data", &CollectionWrapper::collection, luabind::return_stl_iterator);
-//    }
-//};
-
-
 template <class T>
 class CollectionWrapper
 {

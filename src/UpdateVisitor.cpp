@@ -18,15 +18,12 @@ UpdateVisitor::~UpdateVisitor()
 
 void UpdateVisitor::visit(Transform *transform)
 {
-    std::cout << "VISITING TRANSFORM" << std::endl;
 }
 
 void UpdateVisitor::visit(Animation *animation)
 {
-    std::cout << "VISITING Animation" << std::endl;
 }
 
 void UpdateVisitor::visit(AnimationSequence *animationSequence)
 {
-    std::cout << "VISITING AnimationSequence" << std::endl;
 }

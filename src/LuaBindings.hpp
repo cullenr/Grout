@@ -98,11 +98,7 @@ public :
     {
         luabind::module(luaState)
         [
-//            luabind::class_<CollectionWrapper<std::vector<int> > >("CollectionWrapper")
-//                .def(luabind::constructor<std::vector<int> >())
-//                .def("data", &CollectionWrapper<std::vector<int> >::collection, luabind::return_stl_iterator),
-
-            CollectionWrapper<std::vector<int> >::bind(),
+            CollectionWrapper<std::vector<char> >::bind(),
 
             luabind::class_<math::Point>("Point")
                 .def(luabind::constructor<>())

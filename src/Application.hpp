@@ -13,7 +13,6 @@ namespace grout
 class Application
 {
     private:
-        input::Keys mKeys;
         RenderController mRenderController;
         SDL_Surface *mSurface;
         UpdateVisitor mUpdateVisitor;

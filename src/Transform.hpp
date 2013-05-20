@@ -10,6 +10,7 @@ class Transform : public IComponent
 {   
 public:
     math::Point position;
+    math::Point previousPosition;
 
     Transform();
     ~Transform();

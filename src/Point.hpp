@@ -19,6 +19,15 @@ namespace math
         Point(float x, float y) : x(x), y(y)
         {
         }
+
+        Point& operator+=(const Point &rhs);
+        const Point operator+(const Point &rhs) const;
+        Point& operator-=(const Point &rhs);
+        const Point operator-(const Point &rhs) const;
+        Point& operator*=(const Point &rhs);
+        const Point operator*(const Point &rhs) const;
+        Point& operator*=(const float &rhs);
+        const Point operator*(const float &rhs) const;
     };
 };
 };

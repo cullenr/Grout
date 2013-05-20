@@ -21,8 +21,6 @@ void RenderController::render()
 {
     //std::sort(mRenderables.begin(), mRenderables.end());
 
-    std::cout << "!!" << std::endl;
-
     for(IRenderable *renderable : mRenderables)
     {
         Transform * transform = renderable->getTransform();

@@ -4,36 +4,37 @@
 
 using namespace grout::input;
 
+std::vector<char> Keys::mKeysDownThisTick;
+std::vector<char> Keys::mKeysUpThisTick;
+
 Keys::Keys()
 {
-    mKeysDownThisTick.reserve(10);
-    mKeysUpThisTick.reserve(10);
+    Keys::mKeysDownThisTick.reserve(10);
+    Keys::mKeysUpThisTick.reserve(10);
 }
 
 void Keys::resetKeyUpDown()
 {
-    mKeysDownThisTick.clear();
-    mKeysUpThisTick.clear();
+    Keys::mKeysDownThisTick.clear();
+    Keys::mKeysUpThisTick.clear();
 }
 
-
-void Keys::setKeyDown(int key)
+void Keys::setKeyDown(char key)
 {
-    mKeysDownThisTick.push_back(key);
+    Keys::mKeysDownThisTick.push_back(key);
 }
 
-void Keys::setKeyUp(int key)
+void Keys::setKeyUp(char key)
 {
-    mKeysUpThisTick.push_back(key);
+    Keys::mKeysUpThisTick.push_back(key);
 }
 
-
-const std::vector<int>& Keys::getKeysDownThisTick() const
+const std::vector<char>& Keys::getKeysDownThisTick()
 {
-    return mKeysDownThisTick;
+    return Keys::mKeysDownThisTick;
 }
 
-const std::vector<int>& Keys::getKeysUpThisTick() const
+const std::vector<char>& Keys::getKeysUpThisTick()
 {
-    return mKeysUpThisTick;
+    return Keys::mKeysUpThisTick;
 }

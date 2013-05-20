@@ -20,8 +20,6 @@ void Sprite::accept(IVisitor *visitor)
 
 void UpdateVisitor::visit(Sprite *sprite)
 {
-    std::cout << "VISITING Sprite" << std::endl;
-
     mRenderController.addRenderable(sprite);
 }
 

@@ -16,6 +16,5 @@ void LayerChild::accept(IVisitor *visitor)
 
 void UpdateVisitor::visit(LayerChild *layerChild)
 {
-    std::cout << "VISITING LayerChild" << std::endl;
     layerChild->component->accept(this);
 }

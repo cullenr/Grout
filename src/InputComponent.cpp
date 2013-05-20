@@ -1,4 +1,5 @@
 #include "InputComponent.hpp"
+#include "Keys.hpp"
 #include "UpdateVisitor.hpp"
 #include "CollectionWrapper.hpp"
 #include "luabind/luabind.hpp"
@@ -35,20 +36,20 @@ bool InputComponent::setKeyDownCallback(luabind::object callback)
 
 void InputComponent::onKeyDown()
 {
-    std::cout << "Default onKeyDown" << std::endl;
+    const std::vector<char> ints = input::Keys::getKeysDownThisTick();
 
-    std::vector<int> ints = {1, 2, 3};
-
-    if(mKeyDownListener.is_valid())
+    if(ints.size() > 0)
     {
-        try
+        if(mKeyDownListener.is_valid())
         {
-//            luabind::call_function<void>(mKeyDownListener, 12);
-            luabind::call_function<void>(mKeyDownListener, new CollectionWrapper<std::vector<int> >(ints));
-        }
-        catch(luabind::error &e)
-        {
-            std::cerr << "onKeyDown listener error, make sure your arguments are correct" << e.what() << std::endl;
+            try
+            {
+                luabind::call_function<void>(mKeyDownListener, CollectionWrapper<std::vector<char> >(ints));
+            }
+            catch(luabind::error &e)
+            {
+                std::cerr << "onKeyDown listener error, make sure your arguments are correct" << e.what() << std::endl;
+            }
         }
     }
 }
